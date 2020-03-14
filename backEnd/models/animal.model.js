@@ -11,6 +11,7 @@ const animalSchema = new mongoose.Schema({
     "name": {   
         require: true,
         type: types.String
+   
     },
     "keyWords": {   
         require: true,
@@ -58,7 +59,7 @@ const animalSchema = new mongoose.Schema({
         require: true,  
         type: types.String,
         enum : ['Vulnerable',
-                'En peligro de estinción',
+                'En peligro de extinción',
                 'Preocupación menor'
             ],
     }

@@ -1,7 +1,8 @@
 const multer = require('multer');
 const cloudinary =  require ('cloudinary').v2;
 const fs = require('fs');
-const path =  require('path');
+const path = require('path');
+const animal = require('../models/animal.model');
 
 //Read cloudinary config info
 const absoluteRoute = path.join(__dirname.replace('controllers', ''),'/config/lockup.json');
@@ -10,6 +11,8 @@ const cloudConfig = JSON.parse(cloudConfigInfo);
 
 //Upload picture
 exports.uploadImage = (req, res) => {
+    const id = req.params.id;
+     console.log(id)
     {
         const storageConfig = multer.diskStorage(
             {
@@ -40,8 +43,26 @@ exports.uploadImage = (req, res) => {
                 (error, image) =>{
                     if (error) throw error;
                     fs.unlink(path.join(__dirname.replace('controllers', ''), filePath), error => {
-                        if (error) throw error;
-                        res.send(image);
+                        if (error) throw error
+
+                        const urlImage = image.url;
+
+                        const data = {
+                            "imageUrl": urlImage,
+                        }
+
+                    console.log(urlImage)
+
+                        animal.findByIdAndUpdate(
+                            id,
+                            {
+                                $set: data
+                            },
+                            (error, result) => {
+                                if (error) throw error;
+                                res.send({"message": "Url actualizada."});
+                            }
+                        )
                     });
                 }
             );

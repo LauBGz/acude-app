@@ -1,6 +1,8 @@
 //Imports
 const animal = require('../models/animal.model');
 const mongoose = require('mongoose');
+const { check, validationResult } = require('express-validator');
+const bodyController = require('./body.controller');
 
 //Create connection
 mongoose.connect("mongodb://localhost:27017/animal", {
@@ -10,29 +12,46 @@ mongoose.connect("mongodb://localhost:27017/animal", {
 
 //Add animal
 exports.addAnimal = (req, res) => {
+    //Inputs validation
+    const errors = validationResult(req) 
 
-    const rq = req.body;
+    if (errors.isEmpty()){
+        //Middleware to control all the inputs has content
+        bodyController.checkBody(res, req.body, [
+            "name", 
+            "keyWords", 
+            "diet",
+            "reproduction", 
+            "habit",
+            "habitat",
+            "category",
+            "conservationStatus"
+        ]);
 
-    const data = {
-        "_id": mongoose.Types.ObjectId(),
-        "name": rq.name,
-        "keyWords": rq.keyWords,
-        "diet": rq.diet,
-        "reproduction":rq.reproduction,
-        "habit": rq.habit,
-        "imageUrl": rq.imageUrl,
-        "habitat": rq.habitat,
-        "category": rq.category,
-        "conservationStatus": rq.conservationStatus
+        const rq = req.body;
+
+        const data = {
+            "_id": mongoose.Types.ObjectId(),
+            "name": rq.name,
+            "keyWords": rq.keyWords,
+            "diet": rq.diet,
+            "reproduction":rq.reproduction,
+            "habit": rq.habit,
+            "imageUrl": rq.imageUrl,
+            "habitat": rq.habitat,
+            "category": rq.category,
+            "conservationStatus": rq.conservationStatus
+        }
+    
+        const newAnimal =  new animal(data);
+        newAnimal.save((error) =>{
+            if(error) throw error;
+            res.send({"Message": "Animal guardado.",
+            "_id": data._id
+            });
+        })
+
     }
-
-    const newAnimal =  new animal(data);
-    newAnimal.save((error) =>{
-        if(error) throw error;
-        res.send({"Message": "Animal guardado.",
-        "_id": data._id
-        });
-    })
 };
 
 //Get all animals
@@ -64,22 +83,51 @@ exports.deleteAnAnimal =  (req, res) => {
 
 //Update keywords
 exports.updateKeywords = (req, res) => {
-    const id = req.params.id;
+    //Inputs validation
+    const errors = validationResult(req) 
 
-    const rq = req.body;
+    if (errors.isEmpty()){
+        //Middleware to control keywords exist
+        bodyController.checkBody(res, req.body, ["keyWords"]);
 
-    const data = {
-        "keyWords": rq.keyWords,
-    }
+        const id = req.params.id;
 
-    animal.findByIdAndUpdate(
-        id,
-        {
-            $set: data
-        },
-        (error, result) => {
-            if (error) throw error;
-            res.send({"message": "Palabras clave actualizadas."});
+        const rq = req.body;
+    
+        const data = {
+            "keyWords": rq.keyWords,
         }
-    );
+    
+        animal.findByIdAndUpdate(
+            id,
+            {
+                $set: data
+            },
+            (error, result) => {
+                if (error) throw error;
+                res.send({"message": "Palabras clave actualizadas."});
+            }
+        );
+    }
+}
+
+//Filter by keywords
+exports.filterByKeywords = (req, res) => {
+    //Inputs validation
+    const errors = validationResult(req) 
+
+    if (errors.isEmpty()){
+        //Middleware to control keywords exist
+        bodyController.checkBody(res, req.body, ["keyWords"]);
+
+        const rq = req.body;
+
+        animal.find({ keyWords: { $all: rq.keyWords }  },
+            (error, result) => {
+                if (error) throw error;
+
+                res.send({result});
+            }
+        );
+    }
 }
