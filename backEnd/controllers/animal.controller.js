@@ -130,7 +130,16 @@ exports.filterByKeywords = (req, res) => {
         bodyController.checkBody(res, req.body, ["keyWords"]);
 
         const rq = req.body;
-        const userSearch = rq.keyWords;
+        let userSearch;
+
+        for(let i = 0; i < rq.keyWords.length; i++) {
+            userSearch = rq.keyWords[i].toLowerCase();
+            userSearch = userSearch.replace(/[áàãäâ]/,"a");
+            userSearch = userSearch.replace(/[éèëê]/,"e");
+            userSearch = userSearch.replace(/[íìïî]/,"i");
+            userSearch = userSearch.replace(/[óòõöô]/,"o");
+            userSearch = userSearch.replace(/[úùüû]/,"u")
+        }
 
         //Search for all animals with any of the keywords
         animal.find({ keyWords: { "$in" : userSearch } },
@@ -164,3 +173,16 @@ exports.filterByKeywords = (req, res) => {
         );  
     }
 }
+
+//Filter by category
+exports.filterByCategory = (req, res) => {
+    
+    const animalCategory = "AVES";
+
+    animal.find({ category: { "$all" : animalCategory } },
+        (error, result) => {
+            if (error) throw error;
+            res.send({result});      
+    })
+};
+

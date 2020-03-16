@@ -39,6 +39,7 @@ server.post('/uploadImage', uploadController.uploadImage);
 server.post('/filterByKeywords', [   
     check('keyWords.*').isString().escape().trim(),
 ], animalController.filterByKeywords);
+server.get('/filterByCategory', animalController.filterByCategory);
 
 //Listen server
 server.listen(3000, () => {
