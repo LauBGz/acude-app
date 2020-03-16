@@ -29,28 +29,37 @@ exports.addAnimal = (req, res) => {
         ]);
 
         const rq = req.body;
-
-        const data = {
-            "_id": mongoose.Types.ObjectId(),
-            "name": rq.name,
-            "keyWords": rq.keyWords,
-            "diet": rq.diet,
-            "reproduction":rq.reproduction,
-            "habit": rq.habit,
-            "imageUrl": rq.imageUrl,
-            "habitat": rq.habitat,
-            "category": rq.category,
-            "conservationStatus": rq.conservationStatus
-        }
-    
-        const newAnimal =  new animal(data);
-        newAnimal.save((error) =>{
-            if(error) throw error;
-            res.send({"Message": "Animal guardado.",
-            "_id": data._id
-            });
-        })
-
+      
+        animal.find({ name: rq.name },
+            (error, result) => {
+                if (error) throw error;
+             
+                if(result.length === 0){
+                    const data = {
+                    "_id": mongoose.Types.ObjectId(),
+                    "name": rq.name,
+                    "keyWords": rq.keyWords,
+                    "diet": rq.diet,
+                    "reproduction":rq.reproduction,
+                    "habit": rq.habit,
+                    "imageUrl": rq.imageUrl,
+                    "habitat": rq.habitat,
+                    "category": rq.category,
+                    "conservationStatus": rq.conservationStatus
+                    }
+            
+                    const newAnimal = new animal(data);
+                    newAnimal.save((error) =>{
+                        if(error) throw error;
+                        res.send({"Message": "Animal guardado.",
+                        "_id": data._id
+                        });
+                    })  
+                } else{
+                    res.send({"Message": "El animal ya existe en la base de datos."})
+                }
+            }
+        );
     }
 };
 
@@ -101,7 +110,7 @@ exports.updateKeywords = (req, res) => {
         animal.findByIdAndUpdate(
             id,
             {
-                $set: data
+                $push: data
             },
             (error, result) => {
                 if (error) throw error;
@@ -121,13 +130,37 @@ exports.filterByKeywords = (req, res) => {
         bodyController.checkBody(res, req.body, ["keyWords"]);
 
         const rq = req.body;
+        const userSearch = rq.keyWords;
 
-        animal.find({ keyWords: { $all: rq.keyWords }  },
+        //Search for all animals with any of the keywords
+        animal.find({ keyWords: { "$in" : userSearch } },
             (error, result) => {
                 if (error) throw error;
 
-                res.send({result});
+                let orderedResults = [];
+
+                //For all the results
+                for (let i = 0; i < result.length; i++){
+                    let ocurrences = 0;
+                    const allAnimalKeywords = result[i]["keyWords"];
+
+                    //Check all animal keywords
+                    for (let j = 0; j < userSearch.length; j++) {
+
+                        //If animal keywords includes any of the user search words
+                        //ocurrences increase and the new ordered results array is updated
+                        //with the matching degree number and the animal.
+                        if(allAnimalKeywords.includes(userSearch[j])){
+                            ocurrences++;  
+                        }
+                    }
+                    let match = ocurrences/allAnimalKeywords.length*100;
+                    orderedResults.push({"match": match, "array": result[i]}); 
+                }
+                //Sort the array ordered results by matching degree number
+                orderedResults.sort((a, b) => (a.match < b.match) ? 1 : -1)
+                res.send({orderedResults});          
             }
-        );
+        );  
     }
 }

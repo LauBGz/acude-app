@@ -12,7 +12,7 @@ const cloudConfig = JSON.parse(cloudConfigInfo);
 //Upload picture
 exports.uploadImage = (req, res) => {
     const id = req.params.id;
-     console.log(id)
+    
     {
         const storageConfig = multer.diskStorage(
             {
@@ -50,8 +50,6 @@ exports.uploadImage = (req, res) => {
                         const data = {
                             "imageUrl": urlImage,
                         }
-
-                    console.log(urlImage)
 
                         animal.findByIdAndUpdate(
                             id,

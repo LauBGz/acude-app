@@ -35,7 +35,7 @@ server.put('/updateKeywords/:id', [
     check('keyWords.*').isString().escape().trim(),
 ],
 animalController.updateKeywords);
-server.post('/uploadImage/:id', uploadController.uploadImage);
+server.post('/uploadImage', uploadController.uploadImage);
 server.post('/filterByKeywords', [   
     check('keyWords.*').isString().escape().trim(),
 ], animalController.filterByKeywords);
