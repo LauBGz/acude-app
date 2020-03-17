@@ -3,6 +3,7 @@ const animal = require('../models/animal.model');
 const mongoose = require('mongoose');
 const { check, validationResult } = require('express-validator');
 const bodyController = require('./body.controller');
+const arrayUtils = require('../utils/array.util');
 
 //Create connection
 mongoose.connect("mongodb://localhost:27017/animal", {
@@ -75,9 +76,9 @@ exports.getAllAnimals = (req, res) => {
 exports.getAnAnimal = (req, res) => {
     const id = req.params.id;
   
-    animal.findById(id, (error, pets) => {
+    animal.findById(id, (error, result) => {
         if (error) throw error;
-        res.send(pets)
+        res.send(result)
     })
 };
 
@@ -102,21 +103,38 @@ exports.updateKeywords = (req, res) => {
         const id = req.params.id;
 
         const rq = req.body;
-    
-        const data = {
-            "keyWords": rq.keyWords,
-        }
-    
-        animal.findByIdAndUpdate(
-            id,
-            {
-                $push: data
-            },
-            (error, result) => {
-                if (error) throw error;
-                res.send({"message": "Palabras clave actualizadas."});
+
+        let userSearch = [];
+
+        //Utility to normalize user's keywords -to lower case, no accent mark-
+        arrayUtils.normalizeArray(rq.keyWords, userSearch);
+
+        animal.findById(id, (error, result) => {
+            if (error) throw error;
+            
+            //Only add keywords different from existing
+            let newKeywords = [];
+            for (let i = 0; i < userSearch.length; i++) {
+               if(result["keyWords"].indexOf(userSearch[i]) === -1){
+                    newKeywords.push(userSearch[i]);
+               }
             }
-        );
+            
+            const data = {
+                "keyWords": newKeywords,
+            }
+        
+            animal.findByIdAndUpdate(
+                id,
+                {
+                    $push: data
+                },
+                (error, result) => {
+                    if (error) throw error;
+                    res.send({"message": "Palabras clave actualizadas."});
+                }
+            );
+        })
     }
 }
 
@@ -130,19 +148,15 @@ exports.filterByKeywords = (req, res) => {
         bodyController.checkBody(res, req.body, ["keyWords"]);
 
         const rq = req.body;
-        let userSearch;
 
-        for(let i = 0; i < rq.keyWords.length; i++) {
-            userSearch = rq.keyWords[i].toLowerCase();
-            userSearch = userSearch.replace(/[áàãäâ]/,"a");
-            userSearch = userSearch.replace(/[éèëê]/,"e");
-            userSearch = userSearch.replace(/[íìïî]/,"i");
-            userSearch = userSearch.replace(/[óòõöô]/,"o");
-            userSearch = userSearch.replace(/[úùüû]/,"u")
-        }
+        let userSearch = [];
 
+        //Utility to normalize user's keywords -to lower case, no accent mark-
+        arrayUtils.normalizeArray(rq.keyWords, userSearch);
+     
         //Search for all animals with any of the keywords
         animal.find({ keyWords: { "$in" : userSearch } },
+        
             (error, result) => {
                 if (error) throw error;
 
@@ -179,7 +193,7 @@ exports.filterByCategory = (req, res) => {
     
     const animalCategory = "AVES";
 
-    animal.find({ category: { "$all" : animalCategory } },
+    animal.find({ category:  animalCategory },
         (error, result) => {
             if (error) throw error;
             res.send({result});      
