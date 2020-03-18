@@ -1,6 +1,10 @@
 .bg-main {
     background-image: url('../../assets/images/cover_image.jpeg');
     height: 75vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .search {
@@ -10,18 +14,30 @@
     height: 100%;
 }
 
-.form-inline {
-    max-width: 50%;
+.main-search {
+    width: 600px;
 }
 
-.btn-search {
-    background-color: #AF72AF;
+@media screen and (max-width: 600px) {
+    .form-inline {
+        width: 80vw;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .btn-search {
+        width: 80vw;
+    }
+}
+
+.btn-search, .btn-primary {
+    background-color: #9d669d;
     font-size: 16px;
     font-weight: bold;
     color: white;
     border: none ;
 }
 
-.btn-search:hover {
-    background-color: #9d669d;
+.btn-search:hover, .btn-primary:hover {
+    background-color: #623b62;
 }
