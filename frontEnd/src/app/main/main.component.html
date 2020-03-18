@@ -9,15 +9,15 @@
 </div>
 <div class="container">
     <div class="row">
-        <!-- Animal routerLink="/articulo/{{i}}"-->    
-        <div class="col-md-4"  *ngFor="let animal of animals; let i = index">
+        <div class="col-md-4"  *ngFor="let one of _animal.animals; let i = index">
             <div class="card">
-                <img src="{{animal['imageUrl']}}" class="card-img-top" alt="{{animal['name']}}">
+                <img src="{{_animal.animals[i]['imageUrl']}}" class="card-img-top" alt="{{_animal.animals[i]['name']}}">
                 <div class="card-body">
-                    <h5 class="card-title">{{animal["name"]}}</h5>
-                    <a href="#" class="btn btn-primary">Ver animal</a>
+                    <h5 class="card-title">{{_animal.animals[i]["name"]}}</h5>
+                    <a routerLink="/animal/{{_animal.animals[i]['_id']}}" class="btn btn-primary">Ver animal</a>
                 </div>
             </div>
         </div>
     </div>
-</div>  
+</div>
+<app-footer></app-footer>  

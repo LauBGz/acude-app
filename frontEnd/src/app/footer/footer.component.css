@@ -1,0 +1,14 @@
+.footer {
+    background-color: #AF72AF;
+    margin-top: 25px;
+    padding-bottom: 0px;
+    height: 100%;
+    overflow: visible;
+    border: white 1px solid;
+}
+
+.fa{
+    color: white;
+    font-size: 30px;
+    padding-top: 15px;
+}

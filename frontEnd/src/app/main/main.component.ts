@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { AnimalService } from '../service/animal.service';
 
 @Component({
   selector: 'app-main',
@@ -8,16 +8,10 @@ import {HttpClient} from '@angular/common/http';
 })
 export class MainComponent implements OnInit {
 
-  constructor(public _http: HttpClient) { }
-
-  animals: Object;   
+  constructor(public _animal : AnimalService) { }
 
   ngOnInit(): void {
-    this._http.get("http://localhost:3000/getAllAnimals")
-    .subscribe((responseAPI) => { 
-      this.animals = responseAPI;
-      console.log(this.animals[0]);
-    });
+    
   }
 
 }
