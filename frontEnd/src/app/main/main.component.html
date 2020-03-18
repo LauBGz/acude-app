@@ -9,53 +9,15 @@
 </div>
 <div class="container">
     <div class="row">
-        <!-- First animal-->
-        <div class="col-12 col-md-3">
+        <!-- Animal routerLink="/articulo/{{i}}"-->    
+        <div class="col-md-4"  *ngFor="let animal of animals; let i = index">
             <div class="card">
-                <img src="" class="card-img-top" alt="">
+                <img src="{{animal['imageUrl']}}" class="card-img-top" alt="{{animal['name']}}">
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title">{{animal["name"]}}</h5>
+                    <a href="#" class="btn btn-primary">Ver animal</a>
                 </div>
             </div>
         </div>
-        <!-- End first animal-->
-        <!-- First animal-->
-        <div class="col-12 col-md-3">
-            <div class="card">
-                <img src="" class="card-img-top" alt="">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <!-- End first animal-->
-        <!-- First animal-->
-        <div class="col-12 col-md-3">
-            <div class="card">
-                <img src="" class="card-img-top" alt="">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <!-- End first animal-->
-        <!-- First animal-->
-        <div class="col-12 col-md-3">
-            <div class="card">
-                <img src="" class="card-img-top" alt="">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <!-- End first animal-->
     </div>
 </div>  
