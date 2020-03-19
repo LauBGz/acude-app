@@ -11,8 +11,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
 }
+
+.keywords {
+    display: flex;
+    align-items: center;    
+    justify-content: center;
+}
+
 
 .main-search {
     width: 600px;
@@ -49,5 +55,18 @@
 .card-img-top{
     height: 300px;
     object-fit: cover;
+}
+
+.word{
+    background-color: #9d669d;
+    border-radius: 3px;
+    padding: 5px 10px 5px 10px;
+    font-style: italic;
+    font-weight: bold;
+    opacity: 85%;
+}
+
+.fa-trash{
+    margin-left: 10px;
 }
 

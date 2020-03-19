@@ -7,7 +7,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './footer/footer.component';
 import { AnimalComponent } from './animal/animal.component';
-import { AnimalService } from './service/animal.service'
+import { AnimalService } from './service/animal.service';
+import { FormsModule } from '@angular/forms';
 
 const RouterConfig: Routes = [
     {"path": "", "component": MainComponent},
@@ -27,7 +28,8 @@ const RouterConfig: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(RouterConfig, {useHash: true}),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [AnimalService],
   bootstrap: [AppComponent]

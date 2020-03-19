@@ -1,23 +1,33 @@
-<app-navbar></app-navbar>
 <div class="jumbotron jumbotron-fluid bg-main">
     <div class="search">
-        <form class="form-inline">
-            <input class="form-control main-search mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0 btn-search" type="submit">Buscar</button>
+        <form name="miFormulario" #busqueda= "ngForm" (submit)="OnInput()" class="form-inline">
+            <div class="input-group mb-3">
+            <input (keypress)="onKeyPress($event)" name="miInput" class="form-control main-search" #search="ngModel" [(ngModel)]="textoBusqueda" type="search" placeholder="Palabra clave" aria-label="Search">
+            <div class="input-group-append">
+                <button (click)="addKeyword()" class="btn btn-secondary" type="button">Añadir palabra</button>
+            </div>
+            <button class="btn btn-primary ml-2" [disabled]="keywords.length === 0">Buscar</button>
+            </div>
         </form>
     </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-4"  *ngFor="let one of _animal.animals; let i = index">
-            <div class="card">
-                <img src="{{_animal.animals[i]['imageUrl']}}" class="card-img-top" alt="{{_animal.animals[i]['name']}}">
-                <div class="card-body">
-                    <h5 class="card-title">{{_animal.animals[i]["name"]}}</h5>
-                    <a routerLink="/animal/{{_animal.animals[i]['_id']}}" class="btn btn-primary">Ver animal</a>
-                </div>
+    <div class="keywords">
+        <div class="d-flex flex-wrap">
+            <div class="d-inline-flex p-2"  *ngFor="let word of keywords; let i = index">
+                <div class="word">{{keywords[i]}}<i (click)="deleteKeyword(i)" class="fa fa-trash"></i></div>
             </div>
         </div>
     </div>
 </div>
-<app-footer></app-footer>  
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"  *ngFor="let one of _animal.allAnimals; let i = index">
+            <div class="card">
+                <img src="{{_animal.allAnimals[i]['imageUrl']}}" class="card-img-top" alt="{{_animal.animals[i]['name']}}">
+                <div class="card-body">
+                    <h6 class="card-title">{{_animal.allAnimals[i]['name']}}</h6>
+                    <a routerLink="/animal/{{_animal.allAnimals[i]['_id']}}" class="btn btn-primary">Ver animal</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

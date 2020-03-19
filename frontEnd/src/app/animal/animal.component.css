@@ -31,3 +31,19 @@
     border: none ;
 }
 
+.animalInfo{
+    margin-top: 40px;
+}
+
+.title{
+    font-weight: bold;
+}
+
+.badge-success, .badge-warning, .badge-danger{
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+}
+
+
+

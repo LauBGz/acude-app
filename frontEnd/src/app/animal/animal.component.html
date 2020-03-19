@@ -1,4 +1,3 @@
-<app-navbar></app-navbar>
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-5 offset-md-1">
@@ -8,17 +7,19 @@
             </div>
         </div>
         <div class="col-12 col-md-5">
-            <h2>{{_animal.anAnimal["name"]}}</h2>
-            <p><span class="title">Dieta: </span>{{_animal.anAnimal["diet"]}}</p>
-            <p><span class="title">Reproducción: </span>{{_animal.anAnimal["reproduction"]}}</p>
-            <p><span class="title">Hábitat: </span>{{_animal.anAnimal["habitat"]}}</p>
-            <p><span class="title">Cosumbres: </span>{{_animal.anAnimal["habit"]}}</p>
-            <span [ngClass]="{
-            'badge badge-success': _animal.anAnimal['conservationStatus'] === 'Preocupación menor',
-            'badge badge-warning': _animal.anAnimal['conservationStatus'] === 'Vulnerable',
-            'badge badge-danger': _animal.anAnimal['conservationStatus'] === 'En peligro de extinción'}">
-            {{_animal.anAnimal["conservationStatus"]}}</span>
+            <div class="animalInfo">
+                <h2>{{_animal.anAnimal["name"]}}</h2>
+                <p><span class="title">Dieta: </span>{{_animal.anAnimal["diet"]}}</p>
+                <p><span class="title">Reproducción: </span>{{_animal.anAnimal["reproduction"]}}</p>
+                <p><span class="title">Hábitat: </span>{{_animal.anAnimal["habitat"]}}</p>
+                <p><span class="title">Costumbres: </span>{{_animal.anAnimal["habit"]}}</p>
+                <p><span class="title">Estado de conservación: </span>
+                <span [ngClass]="{
+                'badge badge-success': _animal.anAnimal['conservationStatus'] === 'Preocupación menor',
+                'badge badge-warning': _animal.anAnimal['conservationStatus'] === 'Vulnerable',
+                'badge badge-danger': _animal.anAnimal['conservationStatus'] === 'En peligro de extinción'}">
+                {{_animal.anAnimal["conservationStatus"]}}</span></p>
+            </div>
         </div>
     </div>
-</div>
-<app-footer></app-footer>  
+</div> 
