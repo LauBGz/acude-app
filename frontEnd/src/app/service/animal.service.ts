@@ -16,6 +16,8 @@ export class AnimalService {
     animals: Object;  
     anAnimal: Object; 
     allAnimals: any; 
+    messageForm: string;
+    idAnimal: string;
     filteredAnimals: Object [] = [];
 
     loadAllAnimals() {
@@ -49,7 +51,17 @@ export class AnimalService {
 
     addNewAnimal(data){
         this._http.post(this.baseUrl+"addAnimal", data)
-        .subscribe((responseAPI) => { 
-        console.log(responseAPI)});
+        .subscribe((responseAPI) => {
+            console.log(responseAPI) 
+            this.messageForm = responseAPI["Message"];
+            this.idAnimal = responseAPI["_id"];
+        })  
+    }
+
+    uploadImage(data){
+        this._http.post(this.baseUrl+"uploadImage/"+this.idAnimal, data)
+        .subscribe((responseAPI) => {
+            console.log(responseAPI) 
+        })  
     }
 }

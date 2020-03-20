@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-6 offset-md-3">
-            <div class="wrap-form">
+            <div [hidden]="submitted" class="wrap-form">
                 <form 
                 name="formAddAnimal" 
                 #addAnimal="ngForm"
@@ -24,17 +24,28 @@
                 <!--Palabras clave-->
                 <div class="form-group">
                     <label for="animalKeywords">Palabras clave</label>
-                    <input class="form-control"
-                     type="text" 
-                     placeholder="¿Qué palabras lo definen?"
-                     required
-                     maxlength="150"
-                     name="animalKeywords"
-                     #animalKeywords="ngModel"
-                     [(ngModel)]="formData['keyWords']">
+                    <div class="input-group mb-3">
+                        <input 
+                        class="form-control"
+                        type="text" 
+                        placeholder="¿Qué palabras lo definen?"
+                        required
+                        maxlength="150"
+                        name="animalKeywords"
+                        #animalKeywords="ngModel"
+                        [(ngModel)]="formData['keyWords']">
+                        <div class="input-group-append">
+                            <button (click)="addKeywordForm(formData['keyWords'])" class="btn btn-secondary" type="button">+</button>
+                        </div>
+                    </div>
+                    <div *ngIf="keywordsArray !== undefined" class="d-flex flex-wrap kw-box">
+                        <div class="d-inline-flex p-2"  *ngFor="let keyword of keywordsArray; let i = index">
+                            <div class="word">{{this.keywordsArray[i]}}<i (click)="deleteKeyword(i)" class="fa fa-trash"></i></div>
+                        </div>
+                    </div>
                 </div>
-                <p *ngIf="animalKeywords.invalid && animalKeywords.touched && animalKeywords.pristine" class="alert alert-danger">Este campo es obligatorio</p>  
-                <!--Dieta-->
+                <p *ngIf="animalKeywords.invalid && animalKeywords.touched && animalKeywords.pristine || formData['keyWords'] !== undefined" class="alert alert-danger">Debes añadir al menos una palabra clave.</p> 
+               <!--Dieta-->
                 <div class="form-group">
                     <label for="animalDiet">Dieta</label>
                     <input class="form-control" 
@@ -129,6 +140,21 @@
     
                 </form>
 
+            </div>
+            <div [hidden]="!submitted"  class="wrap-form">
+                <div class="alert alert-success" role="alert">
+                    <p>{{_animal.messageForm}}<p>
+                </div>
+                <form 
+                name="formAddImage" 
+                #addImage="ngForm"
+                (ngSubmit)="addImage.form.valid && submitImage(addImage, _animal.idAnimal)">
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1">Añadir imagen</label>
+                        <input type="file" class="form-control-file" id="_animal.idAnimal">
+                        <button type="submit">Enviar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

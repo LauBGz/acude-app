@@ -13,22 +13,31 @@ export class FormComponent implements OnInit {
     ngOnInit(): void {
     }
 
-      //donde se guardarán los datos
+    submitted: boolean = false;
+  
+
       formData: object = {}
-      variableProxy:  string []= [];
+      keywordsArray: string []= [];
 
-      submitData(form){
-        
-        console.log(this.formData["keyWords"]);
-
-        this.formData["keyWords"] = ["ave","rapaz", "brillante"];
-    
-        console.log(this.formData);
-
-        this._animal.addNewAnimal(this.formData);
-        alert("Datos enviados!")
+      addKeywordForm(keyword){
+        this.keywordsArray.push(keyword);
       }
 
+      deleteKeyword(id){
+        this.keywordsArray.splice(id, 1);
+      }
+
+      submitData(form){
+        this.formData["keyWords"] = this.keywordsArray;
+        this._animal.addNewAnimal(this.formData);
+        form.reset();
+        this.keywordsArray = [];
+        this.submitted = true;
+      }
+
+      submitImage(form, id){
+        this._animal.uploadImage(this.formData);
+      }
       
 
 }
