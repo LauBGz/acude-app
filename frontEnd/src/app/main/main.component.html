@@ -4,7 +4,7 @@
             <div class="input-group mb-3">
             <input (keypress)="onKeyPress($event)" name="miInput" class="form-control main-search" #search="ngModel" [(ngModel)]="textoBusqueda" type="search" placeholder="Palabra clave" aria-label="Search">
             <div class="input-group-append">
-                <button (click)="addKeyword()" class="btn btn-secondary" type="button">Añadir palabra</button>
+                <button (click)="addKeyword()" class="btn btn-secondary" type="button">+</button>
             </div>
             <button class="btn btn-primary ml-2" [disabled]="keywords.length === 0">Buscar</button>
             </div>

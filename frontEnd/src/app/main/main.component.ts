@@ -19,15 +19,8 @@ export class MainComponent implements OnInit {
   id: number;
   keywords: string [] = [];
 
-  submitData(form){
-    form.reset();
-    console.log(this.textoBusqueda)
-  }
-  
   addKeyword(){
     this.keywords.push(this.textoBusqueda);
-    console.log(this.keywords)
-    console.log(this.textoBusqueda)
   }
 
   deleteKeyword(id){

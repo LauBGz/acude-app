@@ -11,7 +11,7 @@ const cloudConfig = JSON.parse(cloudConfigInfo);
 
 //Upload picture
 exports.uploadImage = (req, res) => {
-    // const id = req.params.id;
+   const id = req.params.id;
     
     {
         const storageConfig = multer.diskStorage(

@@ -11,8 +11,8 @@ const { check, validationResult } = require('express-validator');
 const server = express();
 
 //Middlewares
-server.use(express.static('web'))
 server.use(cors());
+server.use(express.static('web'))
 server.use(bodyParser.json());
 server.use(helmet())
 

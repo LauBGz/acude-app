@@ -9,11 +9,13 @@ import { FooterComponent } from './footer/footer.component';
 import { AnimalComponent } from './animal/animal.component';
 import { AnimalService } from './service/animal.service';
 import { FormsModule } from '@angular/forms';
+import { FormComponent } from './form/form.component';
 
 const RouterConfig: Routes = [
     {"path": "", "component": MainComponent},
     {"path":"home", "component": MainComponent},
     {"path":"animal/:id", "component": AnimalComponent},
+    {"path":"addAnimal", "component": FormComponent},
   //{"path":"**", "component": }
   ];  
 
@@ -23,7 +25,8 @@ const RouterConfig: Routes = [
     MainComponent,
     NavbarComponent,
     FooterComponent,
-    AnimalComponent
+    AnimalComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,

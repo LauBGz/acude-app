@@ -40,16 +40,16 @@ export class AnimalService {
 
         for (let i = 0; i < responseAPI["orderedResults"].length; i++) {
            this.filteredAnimals.push(responseAPI["orderedResults"][i]["array"]);
-            
-
         }
 
         this.allAnimals = this.filteredAnimals;
-
-        console.log(this.filteredAnimals);
          
         });
     }
-    
-    
+
+    addNewAnimal(data){
+        this._http.post(this.baseUrl+"addAnimal", data)
+        .subscribe((responseAPI) => { 
+        console.log(responseAPI)});
+    }
 }

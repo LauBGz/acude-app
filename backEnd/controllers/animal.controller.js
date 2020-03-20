@@ -43,7 +43,6 @@ exports.addAnimal = (req, res) => {
                     "diet": rq.diet,
                     "reproduction":rq.reproduction,
                     "habit": rq.habit,
-                    "imageUrl": rq.imageUrl,
                     "habitat": rq.habitat,
                     "category": rq.category,
                     "conservationStatus": rq.conservationStatus

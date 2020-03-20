@@ -1,0 +1,135 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6 offset-md-3">
+            <div class="wrap-form">
+                <form 
+                name="formAddAnimal" 
+                #addAnimal="ngForm"
+                (ngSubmit)="addAnimal.form.valid && submitData(addAnimal)"
+                >
+                <!--Nombre-->
+                <div class="form-group">
+                    <label for="animalName">Nombre</label>
+                    <input 
+                    class="form-control" 
+                    type="text"
+                    placeholder="¿Cuál es su nombre oficial?"
+                    required
+                    maxlength="40"
+                    name="animalName"
+                    #animalName="ngModel"
+                    [(ngModel)]="formData['name']">
+                </div>
+                <p *ngIf="animalName.invalid && animalName.touched && animalName.pristine" class="alert alert-danger">Este campo es obligatorio</p>  
+                <!--Palabras clave-->
+                <div class="form-group">
+                    <label for="animalKeywords">Palabras clave</label>
+                    <input class="form-control"
+                     type="text" 
+                     placeholder="¿Qué palabras lo definen?"
+                     required
+                     maxlength="150"
+                     name="animalKeywords"
+                     #animalKeywords="ngModel"
+                     [(ngModel)]="formData['keyWords']">
+                </div>
+                <p *ngIf="animalKeywords.invalid && animalKeywords.touched && animalKeywords.pristine" class="alert alert-danger">Este campo es obligatorio</p>  
+                <!--Dieta-->
+                <div class="form-group">
+                    <label for="animalDiet">Dieta</label>
+                    <input class="form-control" 
+                    type="text" 
+                    placeholder="¿De qué se alimenta?"
+                    required
+                    name="animalDiet"
+                    #animalDiet="ngModel"
+                    [(ngModel)]="formData['diet']">
+                </div>
+                <p *ngIf="animalDiet.invalid && animalDiet.touched && animalDiet.pristine" class="alert alert-danger">Este campo es obligatorio</p>  
+                <!--Reproduction-->
+                <div class="form-group">
+                    <label for="animalReproduction">Reproducción</label>
+                    <input class="form-control" 
+                    type="text" 
+                    placeholder="¿Cuándo se reproduce?"
+                    required
+                    maxlength="150"
+                    name="animalReproduction"
+                    #animalReproduction="ngModel"
+                    [(ngModel)]="formData['reproduction']">
+                </div>
+                <p *ngIf="animalReproduction.invalid && animalReproduction.touched && animalReproduction.pristine" class="alert alert-danger">Este campo es obligatorio</p>  
+                <!--Habits-->
+                <div class="form-group">
+                    <label for="animalHabit">Costumbres</label>
+                    <input class="form-control" 
+                    type="text" 
+                    placeholder="¿Es nocturno? ¿Hiberna?"
+                    required
+                    maxlength="150"
+                    name="animalHabit"
+                    #animalHabit="ngModel"
+                    [(ngModel)]="formData['habit']">   
+                </div>
+                <p *ngIf="animalHabit.invalid && animalHabit.touched && animalHabit.pristine" class="alert alert-danger">Este campo es obligatorio</p>  
+                <!--Habits-->
+                <div class="form-group">
+                    <label for="animalHabitat">Habitat</label>
+                    <input class="form-control" 
+                    type="text"
+                    placeholder="¿Dónde vive?"
+                    required
+                    maxlength="150"
+                    name="animalHabitat"
+                    #animalHabitat="ngModel"
+                    [(ngModel)]="formData['habitat']">
+                </div>
+                <p *ngIf="animalHabitat.invalid && animalHabitat.touched && animalHabitat.pristine" class="alert alert-danger">Este campo es obligatorio</p>  
+                <!--Categories-->
+                <div class="form-group">
+                    <label for="animalCategory">Categoría</label>
+                    <select class="form-control" 
+                    type="select"
+                    required
+                    name="animalCategory"
+                    #animalHabitat="ngModel"
+                    [(ngModel)]="formData['category']">
+                      <option>ANFIBIOS</option>
+                      <option>ANÉLIDOS</option>
+                      <option>ARTRÓPODOS</option>
+                      <option>AVES</option>
+                      <option>CNIDARIOS</option>
+                      <option>EQUINODERMOS</option>
+                      <option>MAMÍFEROS</option>
+                      <option>MOLUSCOS</option>
+                      <option>NEMÁTODOS</option>
+                      <option>PECES</option>
+                      <option>PLATELMINTOS</option>
+                      <option>PORÍFEROS</option>
+                      <option>REPTILES</option>
+                    </select>
+                </div>
+                <!--Conservation status-->
+                <div class="form-group">
+                    <label for="conservationStatus">Estado de conservación</label>
+                    <select class="form-control" 
+                    type="select"
+                    required
+                    name="conservationStatus"
+                    #animalHabitat="ngModel"
+                    [(ngModel)]="formData['conservationStatus']">
+                      <option>Vulnerable</option>
+                      <option>En peligro de extinción</option>
+                      <option>Preocupación menor</option>
+                    </select>
+                </div>
+
+                <input type="reset" class="btn btn-secondary mr-2" value="Restablecer">
+                <input type="submit" class="btn btn-success" value="Enviar" [disabled]="!addAnimal.form.valid"/>
+    
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div> 
