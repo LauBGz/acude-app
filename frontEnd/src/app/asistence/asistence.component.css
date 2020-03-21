@@ -21,3 +21,22 @@
     color: purple;
 }
 
+.find-center{
+    margin-top: 30px;
+}
+
+.info-call{
+    margin-top:20px;
+}
+
+.fa-phone{
+    margin-right: 10px;
+}
+
+.bird-example{
+    max-width: 200px;
+}
+
+.bird-example-text{
+    font-size: small;
+}
