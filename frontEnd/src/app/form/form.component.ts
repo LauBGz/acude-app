@@ -36,7 +36,7 @@ export class FormComponent implements OnInit {
       }
 
       submitImage(form, id){
-        this._animal.uploadImage(this.formData);
+        this._animal.uploadImage(this.formData, id);
       }
       
 

@@ -48,52 +48,57 @@
                <!--Dieta-->
                 <div class="form-group">
                     <label for="animalDiet">Dieta</label>
-                    <input class="form-control" 
+                    <textarea  class="form-control" 
                     type="text" 
                     placeholder="¿De qué se alimenta?"
+                    rows="3"
+                    maxlength="150"
                     required
                     name="animalDiet"
                     #animalDiet="ngModel"
-                    [(ngModel)]="formData['diet']">
+                    [(ngModel)]="formData['diet']"></textarea>
                 </div>
                 <p *ngIf="animalDiet.invalid && animalDiet.touched && animalDiet.pristine" class="alert alert-danger">Este campo es obligatorio</p>  
                 <!--Reproduction-->
                 <div class="form-group">
                     <label for="animalReproduction">Reproducción</label>
-                    <input class="form-control" 
-                    type="text" 
+                    <textarea  class="form-control" 
+                    type="text"  
                     placeholder="¿Cuándo se reproduce?"
                     required
+                    rows="3"
                     maxlength="150"
                     name="animalReproduction"
                     #animalReproduction="ngModel"
-                    [(ngModel)]="formData['reproduction']">
+                    [(ngModel)]="formData['reproduction']"></textarea>
                 </div>
                 <p *ngIf="animalReproduction.invalid && animalReproduction.touched && animalReproduction.pristine" class="alert alert-danger">Este campo es obligatorio</p>  
                 <!--Habits-->
                 <div class="form-group">
                     <label for="animalHabit">Costumbres</label>
-                    <input class="form-control" 
+                    <textarea  class="form-control" 
                     type="text" 
                     placeholder="¿Es nocturno? ¿Hiberna?"
                     required
+                    rows="3"
                     maxlength="150"
                     name="animalHabit"
                     #animalHabit="ngModel"
-                    [(ngModel)]="formData['habit']">   
+                    [(ngModel)]="formData['habit']"> </textarea>  
                 </div>
                 <p *ngIf="animalHabit.invalid && animalHabit.touched && animalHabit.pristine" class="alert alert-danger">Este campo es obligatorio</p>  
                 <!--Habits-->
                 <div class="form-group">
                     <label for="animalHabitat">Habitat</label>
-                    <input class="form-control" 
-                    type="text"
+                    <textarea  class="form-control" 
+                    type="text" 
                     placeholder="¿Dónde vive?"
                     required
+                    rows="3"
                     maxlength="150"
                     name="animalHabitat"
                     #animalHabitat="ngModel"
-                    [(ngModel)]="formData['habitat']">
+                    [(ngModel)]="formData['habitat']"></textarea>
                 </div>
                 <p *ngIf="animalHabitat.invalid && animalHabitat.touched && animalHabitat.pristine" class="alert alert-danger">Este campo es obligatorio</p>  
                 <!--Categories-->
@@ -148,7 +153,7 @@
                 <form 
                 name="formAddImage" 
                 #addImage="ngForm"
-                (ngSubmit)="addImage.form.valid && submitImage(addImage, _animal.idAnimal)">
+                (ngSubmit)="addImage.form.valid && submitImage(addImage, _animal.allAnimals['_id'])">
                     <div class="form-group">
                         <label for="exampleFormControlFile1">Añadir imagen</label>
                         <input type="file" class="form-control-file" id="_animal.idAnimal">

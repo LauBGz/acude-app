@@ -58,10 +58,20 @@ export class AnimalService {
         })  
     }
 
-    uploadImage(data){
-        this._http.post(this.baseUrl+"uploadImage/"+this.idAnimal, data)
+    uploadImage(data, id){
+        this._http.post(this.baseUrl+"uploadImage/"+id, data)
         .subscribe((responseAPI) => {
             console.log(responseAPI) 
         })  
     }
+
+    updateKeywords(keywords, id){
+        this._http.put(this.baseUrl+"updateKeywords/"+id, keywords)
+        .subscribe((responseAPI) => {
+            console.log(responseAPI) 
+        })  
+    }
+
+ 
 }
+

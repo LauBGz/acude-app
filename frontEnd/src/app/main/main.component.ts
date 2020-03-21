@@ -8,34 +8,39 @@ import { AnimalService } from '../service/animal.service';
 })
 export class MainComponent implements OnInit {
 
-  constructor(public _animal : AnimalService) { }
+    constructor(public _animal : AnimalService) { }
 
-  ngOnInit(): void {
-    
-  }
+    ngOnInit(): void {
+        
+    }
 
-  textoBusqueda: string ="";
-  searchBody: object = {}
-  id: number;
-  keywords: string [] = [];
+    textoBusqueda: string ="";
+    searchBody: object = {}
+    id: number;
+    keywords: string [] = [];
+    msgSuccess: boolean = false;
 
-  addKeyword(){
-    this.keywords.push(this.textoBusqueda);
-  }
+    addKeyword(){
+        this.keywords.push(this.textoBusqueda);
+    }
 
-  deleteKeyword(id){
-    this.keywords.splice(id, 1);
-  }
+    deleteKeyword(id){
+        this.keywords.splice(id, 1);
+    }
 
-  OnInput() {
-    this.searchBody = {"keyWords": this.keywords};
-    this._animal.filterByKeywords(this.searchBody);
-  }
+    OnInput() {
+        this.searchBody = {"keyWords": this.keywords};
+        this._animal.filterByKeywords(this.searchBody);
+    }
 
-  onKeyPress(event: any) {
-    if(event.keyCode == 13) {
-        this.addKeyword();
-        this.textoBusqueda = "";
-      }
-    };
+    onKeyPress(event: any) {
+        if(event.keyCode === 13) {
+            this.addKeyword();
+            this.textoBusqueda = "";
+        }
+        };
+
+    addUserKeywords(keywords, id){
+        this._animal.updateKeywords({"keyWords": this.keywords}, id)
+    }
 }
