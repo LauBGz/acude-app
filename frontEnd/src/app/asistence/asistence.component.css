@@ -1,0 +1,23 @@
+.asistence-tabs, .tab-content{
+    margin: 20px;
+}
+
+.intro-asistence{
+    padding-top: 10px;
+}
+
+.card{
+    margin-bottom: 10px;
+}
+
+.card-header{
+    background-color: rgb(238, 215, 238);
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+
+.link-text {
+    color: purple;
+}
+
