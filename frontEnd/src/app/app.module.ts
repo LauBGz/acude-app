@@ -11,6 +11,7 @@ import { AnimalService } from './service/animal.service';
 import { FormsModule } from '@angular/forms';
 import { FormComponent } from './form/form.component';
 import { AsistenceComponent } from './asistence/asistence.component';
+import { ErrorComponent } from './error/error.component';
 
 const RouterConfig: Routes = [
     {"path": "", "component": MainComponent},
@@ -18,7 +19,7 @@ const RouterConfig: Routes = [
     {"path":"animal/:id", "component": AnimalComponent},
     {"path":"addAnimal", "component": FormComponent},
     {"path":"asistence", "component": AsistenceComponent},
-  //{"path":"**", "component": }
+    {"path":"**", "component": ErrorComponent}
   ];  
 
 @NgModule({
@@ -29,7 +30,8 @@ const RouterConfig: Routes = [
     FooterComponent,
     AnimalComponent,
     FormComponent,
-    AsistenceComponent
+    AsistenceComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
