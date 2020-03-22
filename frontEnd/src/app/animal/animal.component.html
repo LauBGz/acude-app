@@ -1,24 +1,24 @@
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-5 offset-md-1">
-            <button type="button" class="btn-primary">{{_animal.anAnimal["category"]}}</button>     
+            <button type="button" class="btn-primary">{{_animalService.anAnimal["category"]}}</button>     
             <div class="img-wrap">
-                <img src="{{_animal.anAnimal['imageUrl']}}" class="info-animal-img" alt="{{_animal.anAnimal['name']}}">
+                <img src="{{_animalService.anAnimal['imageUrl']}}" class="info-animal-img" alt="{{_animalService.anAnimal['name']}}">
             </div>
         </div>
         <div class="col-12 col-md-5">
             <div class="animalInfo">
-                <h2>{{_animal.anAnimal["name"]}}</h2>
-                <p><span class="title">Dieta: </span>{{_animal.anAnimal["diet"]}}</p>
-                <p><span class="title">Reproducción: </span>{{_animal.anAnimal["reproduction"]}}</p>
-                <p><span class="title">Hábitat: </span>{{_animal.anAnimal["habitat"]}}</p>
-                <p><span class="title">Costumbres: </span>{{_animal.anAnimal["habit"]}}</p>
+                <h2>{{_animalService.anAnimal["name"]}}</h2>
+                <p><span class="title">Dieta: </span>{{_animalService.anAnimal["diet"]}}</p>
+                <p><span class="title">Reproducción: </span>{{_animalService.anAnimal["reproduction"]}}</p>
+                <p><span class="title">Hábitat: </span>{{_animalService.anAnimal["habitat"]}}</p>
+                <p><span class="title">Costumbres: </span>{{_animalService.anAnimal["habit"]}}</p>
                 <p><span class="title">Estado de conservación: </span>
                 <span [ngClass]="{
-                'badge badge-success': _animal.anAnimal['conservationStatus'] === 'Preocupación menor',
-                'badge badge-warning': _animal.anAnimal['conservationStatus'] === 'Vulnerable',
-                'badge badge-danger': _animal.anAnimal['conservationStatus'] === 'En peligro de extinción'}">
-                {{_animal.anAnimal["conservationStatus"]}}</span></p>
+                'badge badge-success': _animalService.anAnimal['conservationStatus'] === 'Preocupación menor',
+                'badge badge-warning': _animalService.anAnimal['conservationStatus'] === 'Vulnerable',
+                'badge badge-danger': _animalService.anAnimal['conservationStatus'] === 'En peligro de extinción'}">
+                {{_animalService.anAnimal["conservationStatus"]}}</span></p>
             </div>
         </div>
     </div>

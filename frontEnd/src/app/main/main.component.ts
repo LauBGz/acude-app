@@ -8,7 +8,7 @@ import { AnimalService } from '../service/animal.service';
 })
 export class MainComponent implements OnInit {
 
-    constructor(public _animal : AnimalService) { }
+    constructor(public _animalService: AnimalService) { }
 
     ngOnInit(): void {
         
@@ -30,7 +30,7 @@ export class MainComponent implements OnInit {
 
     OnInput() {
         this.searchBody = {"keyWords": this.keywords};
-        this._animal.filterByKeywords(this.searchBody);
+        this._animalService.filterByKeywords(this.searchBody);
     }
 
     onKeyPress(event: any) {
@@ -41,6 +41,6 @@ export class MainComponent implements OnInit {
         };
 
     addUserKeywords(keywords, id){
-        this._animal.updateKeywords({"keyWords": this.keywords}, id)
+        this._animalService.updateKeywords({"keyWords": this.keywords}, id)
     }
 }

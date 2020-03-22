@@ -7,11 +7,25 @@
     background-size: cover;
 }
 
-.search {
+.search, .intro-form {
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
+.intro-form{
+    background-color: rgba(6, 10, 5, 0.5);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    font-size: 18px;
+    font-weight: 900;
+    margin: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-radius: 5px;
+    padding-top: 10px;
+}
+
 
 .keywords {
     display: flex;
@@ -97,7 +111,11 @@
 }
 
 .fa-check-circle{
-    color: green;
-    font-size: 36px;
+    color: white;
+    font-size: 24px;
+}
+
+.btn-success{
+    margin-left: auto;
 }
 

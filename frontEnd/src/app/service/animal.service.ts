@@ -13,7 +13,7 @@ export class AnimalService {
         this.loadAllAnimals();
     }
 
-    animals: Object;  
+    animals: any;
     anAnimal: Object; 
     allAnimals: any; 
     messageForm: string;
@@ -24,7 +24,18 @@ export class AnimalService {
         this._http.get(this.baseUrl+"getAllAnimals")
         .subscribe((responseAPI) => { 
           this.animals = responseAPI;
+         
+          for (let i = 0; i < this.animals.length; i++) {
+              if(this.animals[i]["animalFileStatus"] === "Pending"){
+                console.log(this.animals[i]);
+                this.animals.splice(i, 1);
+              }
+          }
+
           this.allAnimals = this.animals;
+
+          console.log(this.allAnimals)
+         
         });
     }
 
@@ -40,12 +51,21 @@ export class AnimalService {
         this._http.post(this.baseUrl+"filterByKeywords", keywords)
         .subscribe((responseAPI) => { 
 
-        for (let i = 0; i < responseAPI["orderedResults"].length; i++) {
-           this.filteredAnimals.push(responseAPI["orderedResults"][i]["array"]);
+        this.animals = responseAPI["orderedResults"];
+
+        for (let i = 0; i < this.animals.length; i++) {
+            if(this.animals[i]["animalFileStatus"] === "Pending"){
+                this.animals.splice(i, 1);
+            }
         }
 
-        this.allAnimals = this.filteredAnimals;
+        for (let i = 0; i < this.animals.length; i++) {
+           this.filteredAnimals.push(this.animals[i]["array"]);
+        }
+
+        this.animals = this.filteredAnimals;
          
+        console.log(this.animals)
         });
     }
 
@@ -58,8 +78,8 @@ export class AnimalService {
         })  
     }
 
-    uploadImage(data, id){
-        this._http.post(this.baseUrl+"uploadImage/"+id, data)
+    uploadImage(data){
+        this._http.post(this.baseUrl+"uploadImage/"+this.idAnimal, data)
         .subscribe((responseAPI) => {
             console.log(responseAPI) 
         })  

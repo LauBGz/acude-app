@@ -45,7 +45,8 @@ exports.addAnimal = (req, res) => {
                     "habit": rq.habit,
                     "habitat": rq.habitat,
                     "category": rq.category,
-                    "conservationStatus": rq.conservationStatus
+                    "conservationStatus": rq.conservationStatus,
+                    "animalFileStatus": "Pending"
                     }
             
                     const newAnimal = new animal(data);

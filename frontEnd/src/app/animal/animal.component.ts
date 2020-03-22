@@ -11,11 +11,11 @@ export class AnimalComponent {
 
     id: string = "";
 
-    constructor(private _rute: ActivatedRoute, public _animal: AnimalService) { 
+    constructor(private _rute: ActivatedRoute, public _animalService: AnimalService) { 
         this._rute.params.subscribe( params =>{
             this.id = params['id'];
         })
-        _animal.loadAnAnimal(this.id)
+        _animalService.loadAnAnimal(this.id)
     }
 
 }

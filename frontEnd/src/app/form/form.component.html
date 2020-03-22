@@ -148,15 +148,16 @@
             </div>
             <div [hidden]="!submitted"  class="wrap-form">
                 <div class="alert alert-success" role="alert">
-                    <p>{{_animal.messageForm}}<p>
+                    <p>{{_animalService.messageForm}}<p>
                 </div>
                 <form 
+                enctype="multipart/form-data"
                 name="formAddImage" 
                 #addImage="ngForm"
-                (ngSubmit)="addImage.form.valid && submitImage(addImage, _animal.allAnimals['_id'])">
+                (ngSubmit)="addImage.form.valid && submitImage(addImage)">
                     <div class="form-group">
                         <label for="exampleFormControlFile1">Añadir imagen</label>
-                        <input type="file" class="form-control-file" id="_animal.idAnimal">
+                        <input type="file" class="form-control-file" id="_animalService.idAnimal">
                         <button type="submit">Enviar</button>
                     </div>
                 </form>

@@ -8,7 +8,7 @@ import { AnimalService } from '../service/animal.service';
 })
 export class FormComponent implements OnInit {
 
-    constructor(public _animal : AnimalService) { }
+    constructor(public _animalService : AnimalService) { }
 
     ngOnInit(): void {
     }
@@ -29,14 +29,14 @@ export class FormComponent implements OnInit {
 
       submitData(form){
         this.formData["keyWords"] = this.keywordsArray;
-        this._animal.addNewAnimal(this.formData);
+        this._animalService.addNewAnimal(this.formData);
         form.reset();
         this.keywordsArray = [];
         this.submitted = true;
       }
 
-      submitImage(form, id){
-        this._animal.uploadImage(this.formData, id);
+      submitImage(form){
+        this._animalService.uploadImage(this.formData);
       }
       
 

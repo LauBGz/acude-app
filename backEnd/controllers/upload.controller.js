@@ -30,8 +30,10 @@ exports.uploadImage = (req, res) => {
                 "api_key": cloudConfig["key"],
                 "api_secret": cloudConfig["secret"]
             });
-    
+            
+            console.log(req.file)
             const filePath = req.file.path;
+        
             
             const fileRandonName = Date.now();
     

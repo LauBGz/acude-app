@@ -62,6 +62,10 @@ const animalSchema = new mongoose.Schema({
                 'En peligro de extinción',
                 'Preocupación menor'
             ],
+    },
+    "animalFileStatus": {
+        require: true,  
+        type: types.String,
     }
 });
 
