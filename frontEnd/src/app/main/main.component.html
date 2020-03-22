@@ -23,18 +23,18 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-4"  *ngFor="let one of _animalService.allAnimals; let i = index">
+        <div class="col-md-4"  *ngFor="let one of _animalService.animals; let i = index">
             <div class="card">
-                <img src="{{_animalService.allAnimals[i]['imageUrl']}}" class="card-img-top" alt="{{_animalService.animals[i]['name']}}">
+                <img src="{{_animalService.animals[i]['imageUrl']}}" class="card-img-top" alt="{{_animalService.animals[i]['name']}}">
                 <div class="card-body">
-                    <h6 class="card-title">{{_animalService.allAnimals[i]['name']}}</h6>
-                    <a routerLink="/animal/{{_animalService.allAnimals[i]['_id']}}" class="btn btn-primary">Ver animal</a>
-                    <div class="d-flex flex-row bd-highlight mt-2">
+                    <h6 class="card-title">{{_animalService.animals[i]['name']}}</h6>
+                    <a routerLink="/animal/{{_animalService.animals[i]['_id']}}" class="btn btn-primary">Ver animal</a>
+                    <div *ngIf="_animalService.showCheck" class="d-flex flex-row bd-highlight mt-2">
                         <div class="p-2 bd-highlight">
                             <p>¿Era lo que buscabas?</p>
                         </div>
                         <div class="bd-highlight">
-                            <button class="btn btn-success" (click)="addUserKeywords(keywords, _animalService.allAnimals[i]['_id'])" type="button" ><i class="fa fa-check-circle" aria-hidden="true"></i></button>
+                            <button class="btn btn-success" (click)="addUserKeywords(keywords, _animalService.animals[i]['_id'])" type="button" ><i class="fa fa-check-circle" aria-hidden="true"></i></button>
                         </div>
                     </div>
                 </div>

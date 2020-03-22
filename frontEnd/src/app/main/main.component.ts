@@ -18,10 +18,12 @@ export class MainComponent implements OnInit {
     searchBody: object = {}
     id: number;
     keywords: string [] = [];
-    msgSuccess: boolean = false;
+    
+
 
     addKeyword(){
         this.keywords.push(this.textoBusqueda);
+        this.textoBusqueda ="";
     }
 
     deleteKeyword(id){
@@ -36,7 +38,7 @@ export class MainComponent implements OnInit {
     onKeyPress(event: any) {
         if(event.keyCode === 13) {
             this.addKeyword();
-            this.textoBusqueda = "";
+            
         }
         };
 

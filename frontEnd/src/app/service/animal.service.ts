@@ -19,20 +19,21 @@ export class AnimalService {
     messageForm: string;
     idAnimal: string;
     filteredAnimals: Object [] = [];
+    showCheck: boolean;
 
     loadAllAnimals() {
         this._http.get(this.baseUrl+"getAllAnimals")
         .subscribe((responseAPI) => { 
-          this.animals = responseAPI;
-         
-          for (let i = 0; i < this.animals.length; i++) {
-              if(this.animals[i]["animalFileStatus"] === "Pending"){
-                console.log(this.animals[i]);
-                this.animals.splice(i, 1);
-              }
-          }
-
-          this.allAnimals = this.animals;
+            this.animals = responseAPI;
+            console.log(responseAPI)
+            for (let i = 0; i < this.animals.length; i++) {
+                if(this.animals[i]["animalFileStatus"] === "Pending"){
+                    console.log(this.animals[i]);
+                    this.animals.splice(i, 1);
+                }
+            }
+            this.showCheck = false;
+            this.allAnimals = this.animals;
 
           console.log(this.allAnimals)
          
@@ -61,8 +62,10 @@ export class AnimalService {
 
         for (let i = 0; i < this.animals.length; i++) {
            this.filteredAnimals.push(this.animals[i]["array"]);
+           
         }
 
+        this.showCheck = true;
         this.animals = this.filteredAnimals;
          
         console.log(this.animals)
