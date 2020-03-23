@@ -18,8 +18,7 @@ export class MainComponent implements OnInit {
     searchBody: object = {}
     id: number;
     keywords: string [] = [];
-    
-
+    msgSuccess: boolean =  false;
 
     addKeyword(){
         this.keywords.push(this.textoBusqueda);
@@ -44,5 +43,6 @@ export class MainComponent implements OnInit {
 
     addUserKeywords(keywords, id){
         this._animalService.updateKeywords({"keyWords": this.keywords}, id)
+        return this.msgSuccess === true;
     }
 }

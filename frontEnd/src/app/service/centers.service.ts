@@ -66,5 +66,4 @@ export class CentersService {
       lon: -8.643765
     }
   ]
-
 }
