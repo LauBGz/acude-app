@@ -5,7 +5,7 @@
     <div class="search">
         <form name="miFormulario" #busqueda= "ngForm" (submit)="OnInput()" class="form-inline">
             <div class="input-group mb-3">
-            <input (keypress)="onKeyPress($event)" name="miInput" class="form-control main-search" #search="ngModel" [(ngModel)]="textoBusqueda" type="search" placeholder="Palabra clave" aria-label="Search">
+            <input (keypress)="onKeyPress($event)" name="miInput" class="form-control main-search" #search="ngModel" [(ngModel)]="textSearch" type="search" placeholder="Palabra clave" aria-label="Search">
             <div class="input-group-append">
                 <button (click)="addKeyword()" class="btn btn-warning" type="button">+</button>
             </div>
@@ -21,21 +21,43 @@
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-4"  *ngFor="let one of _animalService.animals; let i = index">
-            <div class="card">
-                <img src="{{_animalService.animals[i]['imageUrl']}}" class="card-img-top" alt="{{_animalService.animals[i]['name']}}">
-                <div class="card-body">
-                    <h6 class="card-title">{{_animalService.animals[i]['name']}}</h6>
-                    <a routerLink="/animal/{{_animalService.animals[i]['_id']}}" class="btn btn-primary">Ver animal</a>
-                    <div *ngIf="_animalService.showCheck" class="d-flex flex-row bd-highlight mt-2">
-                        <div class="p-2 bd-highlight">
-                            <p>¿Era lo que buscabas?</p>
-                        </div>
-                        <div class="bd-highlight">
-                            <button class="btn btn-success" (click)="addUserKeywords(keywords, _animalService.animals[i]['_id'])" type="button" ><i class="fa fa-check-circle" aria-hidden="true"></i></button>
-                            <div *ngIf="msgSuccess"><p>Great!</p></div>
+        <div class="col-md-2">
+            <div id="accordion">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Filtrar por categoría
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <a *ngFor="let category of categories; let i = index" href="#" class="list-group-item list-group-item-action">{{categories[i]}}</a>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-4"  *ngFor="let one of _animalService.animals; let i = index">
+                    <div class="card">
+                        <img src="{{_animalService.animals[i]['imageUrl']}}" class="card-img-top" alt="{{_animalService.animals[i]['name']}}">
+                        <div class="card-body">
+                            <h6 class="card-title">{{_animalService.animals[i]['name']}}</h6>
+                            <a routerLink="/animal/{{_animalService.animals[i]['_id']}}" class="btn btn-primary">Ver animal</a>
+                            <div *ngIf="_animalService.showCheck" class="d-flex flex-row bd-highlight mt-2">
+                                <div class="p-2 bd-highlight">
+                                    <p>¿Era lo que buscabas?</p>
+                                </div>
+                                <div class="bd-highlight">
+                                    <button class="btn btn-success" (click)="addUserKeywords(keywords, _animalService.animals[i]['_id'])" type="button" ><i class="fa fa-check-circle" aria-hidden="true"></i></button>
+                                    <div *ngIf="msgSuccess"><p>Great!</p></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

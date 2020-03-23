@@ -14,15 +14,31 @@ export class MainComponent implements OnInit {
         
     }
 
-    textoBusqueda: string ="";
+    categories: string [] = [
+    'ANFIBIOS',
+    'ANÉLIDOS',
+    'ARTRÓPODOS',
+    'AVES',
+    'CNIDARIOS',
+    'EQUINODERMOS',
+    'MAMÍFEROS',
+    'MOLUSCOS',
+    'NEMÁTODOS',
+    'PECES',
+    'PLATELMINTOS',
+    'PORÍFEROS',
+    'REPTILES',
+    ]
+
+    textSearch: string ="";
     searchBody: object = {}
     id: number;
     keywords: string [] = [];
     msgSuccess: boolean =  false;
 
     addKeyword(){
-        this.keywords.push(this.textoBusqueda);
-        this.textoBusqueda ="";
+        this.keywords.push(this.textSearch);
+        this.textSearch ="";
     }
 
     deleteKeyword(id){
@@ -39,7 +55,7 @@ export class MainComponent implements OnInit {
             this.addKeyword();
             
         }
-        };
+    };
 
     addUserKeywords(keywords, id){
         this._animalService.updateKeywords({"keyWords": this.keywords}, id)

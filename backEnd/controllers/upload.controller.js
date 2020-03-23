@@ -31,7 +31,7 @@ exports.uploadImage = (req, res) => {
                 "api_secret": cloudConfig["secret"]
             });
             
-            console.log(req.file)
+            console.log(req.files)
             const filePath = req.file.path;
         
             
@@ -60,7 +60,7 @@ exports.uploadImage = (req, res) => {
                             },
                             (error, result) => {
                                 if (error) throw error;
-                                res.send({"message": "Url actualizada."});
+                                res.redirect("http://localhost:4200/")
                             }
                         )
                     });

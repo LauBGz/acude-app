@@ -18,10 +18,18 @@ export class FormComponent implements OnInit {
 
       formData: object = {}
       keywordsArray: string []= [];
+    
 
-      addKeywordForm(keyword){
-        this.keywordsArray.push(keyword);
+      addKeywordForm(){
+        this.keywordsArray.push(this.formData['keyWords']);
+        this.formData['keyWords'] = "";
       }
+
+      onKeyPress(event: any) {
+        if(event.keyCode === 13) {
+            this.addKeywordForm();
+            }
+        };
 
       deleteKeyword(id){
         this.keywordsArray.splice(id, 1);
