@@ -15,7 +15,7 @@ export class AnimalService {
 
     animals: any;
     anAnimal: Object; 
-    allAnimals: any; 
+    allAnimals: Object [] = [];
     messageForm: string;
     idAnimal: string;
     filteredAnimals: Object [] = [];
@@ -27,13 +27,12 @@ export class AnimalService {
             this.animals = responseAPI;
             console.log(responseAPI)
             for (let i = 0; i < this.animals.length; i++) {
-                if(this.animals[i]["animalFileStatus"] === "Pending"){
-                    console.log(this.animals[i]);
-                    this.animals.splice(i, 1);
+                if(this.animals[i]["animalFileStatus"] !== "Pending"){
+                    this.allAnimals.push(this.animals[i]);
                 }
             }
             this.showCheck = false;
-            this.allAnimals = this.animals;
+            // this.allAnimals = this.animals;
 
           console.log(this.allAnimals)
          

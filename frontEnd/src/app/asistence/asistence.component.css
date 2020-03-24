@@ -40,3 +40,13 @@
 .bird-example-text{
     font-size: small;
 }
+
+.alert-primary{
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.alert-primary p {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}

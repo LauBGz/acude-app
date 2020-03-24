@@ -85,6 +85,11 @@
                     <p><strong>Encontrar el centro más cercano</strong></p>
                     <button (click)="geolocalizar()" type="button" class="btn btn-info">Centro más cercano</button>
                 </div>
+                <div *ngIf="closestCenter !== undefined" class="alert alert-primary">
+                    <p><strong>{{closestCenter["name"]}}</strong></p>
+                    <p>Dirección: {{closestCenter["address"]}}</p>
+                    <p>Teléfono: {{closestCenter["phone"]}}</p>
+                </div>
             </div>
         </div> 
     </div>

@@ -2,6 +2,7 @@
     <div class="row">
         <div class="col-12 col-md-6 offset-md-3">
             <div [hidden]="submitted" class="wrap-form">
+                <!--Formulario añadir info animal-->
                 <form name="formAddAnimal" #addAnimal="ngForm"
                     (ngSubmit)="addAnimal.form.valid && submitData(addAnimal)">
                     <!--Nombre-->
@@ -107,31 +108,20 @@
                     <input type="submit" class="btn btn-success" value="Enviar" [disabled]="!addAnimal.form.valid" />
 
                 </form>
-
             </div>
             <div [hidden]="!submitted" class="wrap-form">
                 <div class="alert alert-info" role="alert">
                     <p>{{_animalService.messageForm}}<p>
                 </div>
-                <!-- <form 
-            enctype="multipart/form-data"
-            method="post" 
-            name="formAddImage" 
-            #addImage="ngForm"
-            (ngSubmit)="addImage.form.valid && submitImage(addImage)">
-                <div class="form-group">
-                    <label for="animalImage">Añadir imagen</label>
-                    <input type="file" name="file" class="form-control-file" id="_animalService.idAnimal">
-                    <button type="submit">Enviar</button>
-                </div>
-            </form> -->
                 <div class="title-addImage">
                     <p>¿Tienes una imagen donde se vea bien el animal? ¡Súbela!</p>
                 </div>
                 <form ngNoForm action="http://localhost:3000/uploadImage/{{_animalService.idAnimal}}" method="POST"
-                    enctype="multipart/form-data">
-                    <input name="animalImage" type="file">
-                    <button type="submit">Enviar</button>
+                enctype="multipart/form-data">
+                    <div class="form-group">
+                      <input name="animalImage" type="file" class="form-control-file">
+                      <button type="submit">Enviar</button>
+                    </div>
                 </form>
             </div>
         </div>

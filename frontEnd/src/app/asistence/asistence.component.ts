@@ -15,49 +15,39 @@ export class AsistenceComponent implements OnInit {
   }
 
     asistanceCenters: any = this._centersService.centers;
+    closestCenter: Object;
 
     geolocalizar(){
 
-        let userLat;
-        let userLon;
-        
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(getUserPosition);
+            navigator.geolocation.getCurrentPosition(this.getUserPosition);
         } else { 
             alert("Geolocation is not supported by this browser.");
         }
+   
+    }
 
-        console.log(this.asistanceCenters) 
-        
-        function getUserPosition(position) {
-            userLat = position.coords.latitude;
-            userLat = position.coords.longitude;
-               
-            let minDif = 99999;
-            let closest;
-            let index;
-               
-            for (index = 0; this.index < this.asistanceCenters.length; this.index++ ) {
-                
-                let dif = PythagorasEquirectangular(userLat, userLon, this.asistanceCenters[index]["lat"], this.asistanceCenters[index]["lon"]);
-                if (dif < minDif) {
-                    closest = this.index;
-                    minDif = dif;
-                    console.log(minDif)
-                }
-            }
+    getUserPosition = (position) => {
+        let userLat = 42.596250;
+        let userLon = -7.180810;
            
+        let minDif = 99999;
+        let closest;
+        let index;
+        let showAddress = false;
+           
+        for (index = 0; index < this.asistanceCenters.length; index++ ) {
+            let dif = PythagorasEquirectangular(userLat, userLon, this.asistanceCenters[index]["lat"], this.asistanceCenters[index]["lon"]);
+            if (dif < minDif) {
+                closest = index;
+                minDif = dif;
+            }
         }
 
-       
+        this.closestCenter = this.asistanceCenters[closest];
 
-      
-        //Función para obtener el centro más cercano
-        // function getUserPosition(position) {
-        //     nearestCenter(position.coords.latitude, position.coords.longitude);
-        //     }
+        console.log(this.closestCenter) 
 
-        //Funciones matemáticas 
         function Deg2Rad(deg) {
             return deg * Math.PI / 180;
         }
@@ -73,29 +63,7 @@ export class AsistenceComponent implements OnInit {
             let d = Math.sqrt(x * x + y * y) * R;
             return d;
         }
-
-        // //Si el navegador lo soporta que obtenga la posición del usuario
-        // if (navigator.geolocation) {
-        //     navigator.geolocation.getCurrentPosition(getUserPosition);
-        // } else {
-        //     alert("Geolocation is not supported by this browser.");
-        // }
-
-        // //Función para obtener la dirección más cercana según la latitud/longitud
-        // function nearestCenter(latitude, longitude) {
-        //     let minDif = 99999;
-        //     let closest;
-        //     let index;
-            
-        //     for (index = 0; this.index < this.asistanceCenters.length; this.index++ ) {
-        //         let dif = PythagorasEquirectangular(latitude, longitude, this.asistanceCenters[index]["lat"], this.asistanceCenters[index]["lon"]);
-        //         if (dif < minDif) {
-        //             closest = this.index;
-        //             minDif = dif;
-        //         }
-        //     }
-        // }   
-
+       
     }
 
 }
