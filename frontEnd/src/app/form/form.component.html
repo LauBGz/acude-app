@@ -28,9 +28,6 @@
                         <div class="info-keywords">
                             <p>Escribe una palabra clave y pulsa el botón "+" para añadirla.</p>
                         </div>
-
-                        <!-- <p *ngIf="formData['keyWords'] !== undefined" class="alert alert-danger">Debes añadir al menos una palabra clave.</p>  -->
-
                         <div *ngIf="keywordsArray !== undefined" class="d-flex flex-wrap kw-box">
                             <div class="d-inline-flex p-2" *ngFor="let keyword of keywordsArray; let i = index">
                                 <div class="word">{{this.keywordsArray[i]}}<i (click)="deleteKeyword(i)" class="fa fa-trash"></i></div>

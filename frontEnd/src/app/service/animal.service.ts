@@ -25,49 +25,37 @@ export class AnimalService {
         this._http.get(this.baseUrl+"getAllAnimals")
         .subscribe((responseAPI) => { 
             this.animals = responseAPI;
-            console.log(responseAPI)
+            //For all the results filter only the ones ready to be published
             for (let i = 0; i < this.animals.length; i++) {
                 if(this.animals[i]["animalFileStatus"] !== "Pending"){
                     this.allAnimals.push(this.animals[i]);
                 }
             }
-            this.showCheck = false;
-            // this.allAnimals = this.animals;
-
-          console.log(this.allAnimals)
-         
+            //Update keywords option is not available until the search is done
+            this.showCheck = false;      
         });
     }
 
     loadAnAnimal(id) {
         this._http.get(this.baseUrl+"getAnAnimal/"+id)
-        .subscribe((responseAPI) => { 
-          this.anAnimal = responseAPI;
+            .subscribe((responseAPI) => { 
+            this.anAnimal = responseAPI;
         });
     }
 
-    filterByKeywords(keywords) {
-        this.filteredAnimals = [];
+    filterByKeywords(keywords) {        
         this._http.post(this.baseUrl+"filterByKeywords", keywords)
         .subscribe((responseAPI) => { 
-
-        this.animals = responseAPI["orderedResults"];
-
-        for (let i = 0; i < this.animals.length; i++) {
-            if(this.animals[i]["animalFileStatus"] === "Pending"){
-                this.animals.splice(i, 1);
+            this.animals = responseAPI["orderedResults"];
+            //For all the results filtered show only the ones ready to be published
+            for (let i = 0; i < this.animals.length; i++) {
+                if(this.animals[i]["array"]["animalFileStatus"] !== "Pending"){
+                    this.filteredAnimals.push(this.animals[i]["array"]);
+                }
             }
-        }
-
-        for (let i = 0; i < this.animals.length; i++) {
-           this.filteredAnimals.push(this.animals[i]["array"]);
-           
-        }
-
-        this.showCheck = true;
-        this.animals = this.filteredAnimals;
-         
-        console.log(this.animals)
+            //Update keywords option is now available   
+            this.showCheck = true;
+            this.allAnimals = this.filteredAnimals;
         });
     }
 
