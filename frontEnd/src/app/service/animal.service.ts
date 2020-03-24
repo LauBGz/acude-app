@@ -20,6 +20,7 @@ export class AnimalService {
     idAnimal: string;
     filteredAnimals: Object [] = [];
     showCheck: boolean;
+    registeredAnimal: string;
 
     loadAllAnimals() {
         this._http.get(this.baseUrl+"getAllAnimals")
@@ -82,6 +83,16 @@ export class AnimalService {
         })  
     }
 
- 
+    checkAnimalName(data){   
+        this._http.post(this.baseUrl+"checkName", data)
+        .subscribe((responseAPI) => {
+            
+            if(responseAPI["Error"]){
+                this.registeredAnimal = responseAPI["Error"];
+            } else {
+                this.registeredAnimal = responseAPI["Success"];
+            }
+        })  
+    }
 }
 

@@ -13,39 +13,45 @@ export class FormComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    searchBody: object = {}
     submitted: boolean = false;
-  
+    formData: object = {}
+    keywordsArray: string []= [];
 
-      formData: object = {}
-      keywordsArray: string []= [];
     
+    checkName(){
+        console.log(this.formData['name'])
+        this.searchBody = {"name": this.formData['name']};
+        this._animalService.checkAnimalName(this.searchBody);
+        
+    }
 
-      addKeywordForm(){
+    addKeywordForm(){
         this.keywordsArray.push(this.formData['keyWords']);
         this.formData['keyWords'] = "";
-      }
+    }
 
-      onKeyPress(event: any) {
+    onKeyPress(event: any) {
         if(event.keyCode === 13) {
             this.addKeywordForm();
             }
-        };
+    };
 
-      deleteKeyword(id){
+    deleteKeyword(id){
         this.keywordsArray.splice(id, 1);
-      }
+    }
 
-      submitData(form){
+    submitData(form){
         this.formData["keyWords"] = this.keywordsArray;
         this._animalService.addNewAnimal(this.formData);
         form.reset();
         this.keywordsArray = [];
         this.submitted = true;
-      }
+    }
 
-      submitImage(form){
+    submitImage(form){
         this._animalService.uploadImage(this.formData);
-      }
-      
+    }
+    
 
 }

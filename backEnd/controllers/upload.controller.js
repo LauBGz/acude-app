@@ -58,7 +58,7 @@ exports.uploadImage = (req, res) => {
                             },
                             (error, result) => {
                                 if (error) throw error;
-                                res.redirect("http://localhost:4200/")
+                                res.redirect("http://localhost:4200/#/success")
                             }
                         )
                     });

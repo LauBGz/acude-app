@@ -9,10 +9,12 @@
                     <div class="form-group">
                         <label for="animalName">Nombre</label>
                         <input class="form-control" type="text" placeholder="¿Cuál es su nombre oficial?" required
-                            maxlength="40" name="animalName" #animalName="ngModel" [(ngModel)]="formData['name']">
+                            maxlength="40" name="animalName" #animalName="ngModel" [(ngModel)]="formData['name']"  (change)="checkName()">
                     </div>
                     <p *ngIf="animalName.invalid && animalName.touched && animalName.pristine"
                         class="alert alert-danger">Este campo es obligatorio</p>
+                    <p *ngIf="_animalService.registeredAnimal !== undefined"
+                        class="alert alert-info">{{_animalService.registeredAnimal}}</p>
                     <!--Palabras clave-->
                     <div class="form-group">
                         <label for="animalKeywords">Palabras clave</label>

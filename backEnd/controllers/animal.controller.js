@@ -190,14 +190,24 @@ exports.filterByKeywords = (req, res) => {
 }
 
 //Filter by category
-exports.filterByCategory = (req, res) => {
-    
-    const animalCategory = "AVES";
-
-    animal.find({ category:  animalCategory },
-        (error, result) => {
-            if (error) throw error;
-            res.send({result});      
-    })
+exports.checkName = (req, res) => {
+    //Inputs validation
+    const errors = validationResult(req) 
+  
+    if (errors.isEmpty()){
+      
+        const rq = req.body;
+      
+        animal.find({ name: rq.name },
+            (error, result) => {
+                if (error) throw error;
+                
+                if(result.length !== 0){
+                    res.send({"Error": "El animal ya existe en la base de datos."})
+                } else {
+                    res.send({"Success": "¡Perfecto! El animal todavía no existe en la base de datos."})
+                }
+            }
+        );
+    }
 };
-

@@ -46,7 +46,7 @@ export class MainComponent implements OnInit {
         this.keywords.splice(id, 1);
     }
 
-    OnInput() {
+    filterByKeyword() {
         this.searchBody = {"keyWords": this.keywords};
         this._animalService.filterByKeywords(this.searchBody);
     }
@@ -54,13 +54,21 @@ export class MainComponent implements OnInit {
     onKeyPress(event: any) {
         if(event.keyCode === 13) {
             this.addKeyword();
-            
         }
     };
 
     addUserKeywords(keywords, id){
         this._animalService.updateKeywords({"keyWords": this.keywords}, id)
         return this.msgSuccess === true;
+    }
+
+    deleteKeywords(){
+        while(this.keywords.length > 0) {
+            this.keywords.pop();
+        }
+        
+        this._animalService.allAnimals = [];
+        this._animalService.loadAllAnimals();
     }
 
     // filterByCategory(category, event){
