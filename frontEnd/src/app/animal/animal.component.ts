@@ -10,12 +10,25 @@ import { AnimalService} from '../service/animal.service'
 export class AnimalComponent {
 
     id: string = "";
+    showModal: boolean;
 
     constructor(private _rute: ActivatedRoute, public _animalService: AnimalService) { 
         this._rute.params.subscribe( params =>{
             this.id = params['id'];
         })
         _animalService.loadAnAnimal(this.id)
+    }
+
+    
+    show()
+    {
+      this.showModal = true; // Show-Hide Modal Check
+      
+    }
+    //Bootstrap Modal Close event
+    hide()
+    {
+      this.showModal = false;
     }
 
 }

@@ -1,12 +1,18 @@
 <div class="container">
     <div class="row">
-        <div class="col-12 col-md-5 offset-md-1">
-            <button type="button" class="btn-primary">{{_animalService.anAnimal["category"]}}</button>     
+        <div *ngIf="_animalService.anAnimal !== undefined" class="col-12 col-md-5 offset-md-1">
+            <button type="button" disabled class="btn-primary">{{_animalService.anAnimal["category"]}}</button>     
             <div class="img-wrap">
-                <img src="{{_animalService.anAnimal['imageUrl']}}" class="info-animal-img" alt="{{_animalService.anAnimal['name']}}">
+                <img (click) = "show()" src="{{_animalService.anAnimal['imageUrl']}}" class="info-animal-img" id="{{_animalService.anAnimal['name']}}" alt="{{_animalService.anAnimal['name']}}">
+                <div [style.display]="showModal ? 'block' : 'none'" class="modal" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-content">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" (click) = "hide()">Cerrar</button>
+                        <img src="{{_animalService.anAnimal['imageUrl']}}" id="imagepreview">
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-12 col-md-5">
+        <div *ngIf="_animalService.anAnimal !== undefined" class="col-12 col-md-5">
             <div class="animalInfo">
                 <h2>{{_animalService.anAnimal["name"]}}</h2>
                 <p><span class="title">Dieta: </span>{{_animalService.anAnimal["diet"]}}</p>

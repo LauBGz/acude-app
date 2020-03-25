@@ -34,6 +34,8 @@ export class AnimalService {
             }
             //Update keywords option is not available until the search is done
             this.showCheck = false;      
+
+            console.log(this.allAnimals)
         });
     }
 
@@ -57,6 +59,8 @@ export class AnimalService {
             //Update keywords option is now available   
             this.showCheck = true;
             this.allAnimals = this.filteredAnimals;
+            console.log(this.allAnimals)
+            this.filteredAnimals = [];
         });
     }
 

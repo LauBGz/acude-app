@@ -34,7 +34,7 @@ export class MainComponent implements OnInit {
     searchBody: object = {}
     id: number;
     keywords: string [] = [];
-    msgSuccess: boolean =  false;
+    msgSuccess: string;
     filteredByCategory: object [] = [];
 
     addKeyword(){
@@ -59,7 +59,11 @@ export class MainComponent implements OnInit {
 
     addUserKeywords(keywords, id){
         this._animalService.updateKeywords({"keyWords": this.keywords}, id)
-        return this.msgSuccess === true;
+        this._animalService.allAnimals.forEach(element => {
+            if(element["_id"] === id){
+               this.msgSuccess = element["_id"];
+            }
+        });
     }
 
     deleteKeywords(){
@@ -86,15 +90,23 @@ export class MainComponent implements OnInit {
         if(event.target.checked) {
             for (let i = 0; i < this._animalService.allAnimals.length; i++) {
                 if(this._animalService.allAnimals[i]["category"] === category){
-                    console.log(this._animalService.allAnimals[i])
                     this.filteredByCategory.push(this._animalService.allAnimals[i])
                 }
             }
             this._animalService.allAnimals = this.filteredByCategory;
             this.filteredByCategory = [];
+            console.log(this._animalService.allAnimals)
+
+            
         } else {
             this._animalService.allAnimals = [];
-            this._animalService.loadAllAnimals();
+            if(this.keywords.length > 0){
+                this.filterByKeyword();
+            } else {
+                this._animalService.loadAllAnimals;
+            }
+            
+            console.log(this._animalService.allAnimals)
         // for(let i=0 ; i < this._animalService.allAnimals.length+1; i++) {
         //   if(this.filteredByCategory[i] === this._animalService.allAnimals[i]) {
         //     this.filteredByCategory.splice(i,1);

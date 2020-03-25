@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="bd-highlight">
                                     <button class="btn btn-success" (click)="addUserKeywords(keywords, _animalService.allAnimals[i]['_id'])" type="button" ><i class="fa fa-check-circle" aria-hidden="true"></i></button>
-                                    <div *ngIf="msgSuccess"><p>Great!</p></div>
+                                    <p *ngIf="msgSuccess === _animalService.allAnimals[i]['_id']">¡Genial!</p>
                                 </div>
                             </div>
                         </div>
