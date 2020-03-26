@@ -96,14 +96,12 @@ export class MainComponent implements OnInit {
             this._animalService.allAnimals = this.filteredByCategory;
             this.filteredByCategory = [];
             console.log(this._animalService.allAnimals)
-
-            
         } else {
             this._animalService.allAnimals = [];
             if(this.keywords.length > 0){
                 this.filterByKeyword();
             } else {
-                this._animalService.loadAllAnimals;
+                this._animalService.loadAllAnimals();
             }
             
             console.log(this._animalService.allAnimals)
