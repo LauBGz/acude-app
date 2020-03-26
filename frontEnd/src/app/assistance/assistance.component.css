@@ -6,6 +6,10 @@
     padding-top: 10px;
 }
 
+.title-section{
+    margin-bottom: 20px;
+}
+
 .card{
     margin-bottom: 10px;
 }
@@ -49,4 +53,12 @@
 .alert-primary p {
     margin-bottom: 0px;
     margin-top: 0px;
+}
+
+.ordered-list{
+    padding-left: 10px;
+}
+
+.orderd-item{
+    padding-bottom: 15px;
 }

@@ -3,11 +3,11 @@ import {CentersService} from '../service/centers.service'
 
 
 @Component({
-  selector: 'app-asistence',
-  templateUrl: './asistence.component.html',
-  styleUrls: ['./asistence.component.css']
+  selector: 'app-assistance',
+  templateUrl: './assistance.component.html',
+  styleUrls: ['./assistance.component.css']
 })
-export class AsistenceComponent implements OnInit {
+export class AssistanceComponent implements OnInit {
 
   constructor(public _centersService: CentersService) { }
 

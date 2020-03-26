@@ -8,10 +8,10 @@ import { AnimalService } from '../service/animal.service';
 })
 export class MainComponent implements OnInit {
 
-    constructor(public _animalService: AnimalService) { }
+    constructor(public _animalService: AnimalService) {    }
 
-    ngOnInit(): void {
-        
+    ngOnInit(): void {       
+    
     }
 
     categories: string [] = [
@@ -36,7 +36,11 @@ export class MainComponent implements OnInit {
     keywords: string [] = [];
     msgSuccess: string;
     filteredByCategory: object [] = [];
-
+    inferior: number = 0;
+    superior: number = 9;
+   
+   
+  
     addKeyword(){
         this.keywords.push(this.textSearch);
         this.textSearch ="";
@@ -111,8 +115,22 @@ export class MainComponent implements OnInit {
         //  }
     //    }
      }
-    
    }
+
+   next(){   
+    this.inferior = this.inferior + 9;
+    this.superior = this.superior + 9;
+    console.log(this.superior)
+    // this.page++;
+   }
+
+   previous(){
+    this.inferior = this.inferior - 9;
+    this.superior = this.superior - 9;
+  
+    // this.page--;
+   }
+   
    
 
 }

@@ -138,14 +138,14 @@
 .btn-link {
     color: purple;
 }
-
+/* 
 @media (min-width: 720px)
 {
-    #collapseOne
+    .collapse
     {
         display: block;
     }
-}
+} */
 
 .list-group-item{
     background-color: rgb(255, 239, 255);
@@ -153,4 +153,9 @@
 
 .btn-secondary{
     padding-left: 0px;
+}
+
+.btn-warning{
+    margin-right: 10px;
+    font-weight: bold;
 }

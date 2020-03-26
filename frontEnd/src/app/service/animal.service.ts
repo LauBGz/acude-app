@@ -21,6 +21,8 @@ export class AnimalService {
     filteredAnimals: Object [] = [];
     showCheck: boolean;
     registeredAnimal: string;
+    arrayPages: number [] = [];
+    limit: number = 9;
 
     loadAllAnimals() {
         this._http.get(this.baseUrl+"getAllAnimals")
@@ -33,9 +35,9 @@ export class AnimalService {
                 }
             }
             //Update keywords option is not available until the search is done
-            this.showCheck = false;      
-
-            console.log(this.allAnimals)
+            this.showCheck = false;   
+            
+          
         });
     }
 
@@ -59,7 +61,7 @@ export class AnimalService {
             //Update keywords option is now available   
             this.showCheck = true;
             this.allAnimals = this.filteredAnimals;
-            console.log(this.allAnimals)
+      
             this.filteredAnimals = [];
         });
     }
@@ -67,7 +69,6 @@ export class AnimalService {
     addNewAnimal(data){
         this._http.post(this.baseUrl+"addAnimal", data)
         .subscribe((responseAPI) => {
-            console.log(responseAPI) 
             this.messageForm = responseAPI["Message"];
             this.idAnimal = responseAPI["_id"];
         })  
@@ -98,5 +99,14 @@ export class AnimalService {
             }
         })  
     }
+
+    // calculatePages(){
+    //     this.arrayPages = [];
+    //     let pages = Math.ceil(this.allAnimals.length/this.limit);
+            
+    //     for (let i = 1; i < pages+1; i++) {
+    //         this.arrayPages.push(i)
+    //     }
+    // }
 }
 

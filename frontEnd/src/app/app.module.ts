@@ -10,16 +10,19 @@ import { AnimalComponent } from './animal/animal.component';
 import { AnimalService } from './service/animal.service';
 import { FormsModule } from '@angular/forms';
 import { FormComponent } from './form/form.component';
-import { AsistenceComponent } from './asistence/asistence.component';
+import { AssistanceComponent } from './assistance/assistance.component';
 import { ErrorComponent } from './error/error.component';
 import { SuccessComponent } from './success/success.component';
+import { CentersService} from './service/centers.service';
+
+
 
 const RouterConfig: Routes = [
     {"path": "", "component": MainComponent},
     {"path":"home", "component": MainComponent},
     {"path":"animal/:id", "component": AnimalComponent},
     {"path":"addAnimal", "component": FormComponent},
-    {"path":"asistence", "component": AsistenceComponent},
+    {"path":"assistance", "component": AssistanceComponent},
     {"path":"success", "component": SuccessComponent},
     {"path":"**", "component": ErrorComponent}
   ];  
@@ -32,7 +35,7 @@ const RouterConfig: Routes = [
     FooterComponent,
     AnimalComponent,
     FormComponent,
-    AsistenceComponent,
+    AssistanceComponent,
     ErrorComponent,
     SuccessComponent
   ],
@@ -42,7 +45,7 @@ const RouterConfig: Routes = [
     HttpClientModule,
     FormsModule
   ],
-  providers: [AnimalService],
+  providers: [AnimalService, CentersService], 
   bootstrap: [AppComponent]
 })
 export class AppModule { }
