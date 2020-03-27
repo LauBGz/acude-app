@@ -14,19 +14,19 @@ export class AnimalService {
     }
 
     categories: string [] = [
-        'ANFIBIOS',
-        'ANÉLIDOS',
-        'ARTRÓPODOS',
-        'AVES',
-        'CNIDARIOS',
-        'EQUINODERMOS',
-        'MAMÍFEROS',
-        'MOLUSCOS',
-        'NEMÁTODOS',
-        'PECES',
-        'PLATELMINTOS',
-        'PORÍFEROS',
-        'REPTILES',
+        'ANFIBIO',
+        'ANÉLIDO',
+        'ARTRÓPODO',
+        'AVE',
+        'CNIDARIO',
+        'EQUINODERMO',
+        'MAMÍFERO',
+        'MOLUSCO',
+        'NEMÁTODO',
+        'PEZ',
+        'PLATELMINTO',
+        'PORÍFERO',
+        'REPTIL',
         ]
         
     animals: any;

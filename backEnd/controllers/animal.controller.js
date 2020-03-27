@@ -211,3 +211,13 @@ exports.checkName = (req, res) => {
         );
     }
 };
+
+
+//Get all animals
+exports.getAllCategories = (req, res) => {
+    animal.find({category: "enum" }, (error, result) => {
+        if (error) throw error;
+        res.send(result)
+    })
+};
+

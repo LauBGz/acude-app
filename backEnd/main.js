@@ -31,6 +31,7 @@ server.post('/addAnimal', [
 animalController.addAnimal);
 server.get('/getAnAnimal/:id', animalController.getAnAnimal);
 server.get('/getAllAnimals', animalController.getAllAnimals);
+server.get('/getAllCategories', animalController.getAllCategories);
 server.delete('/deleteAnAnimal/:id',animalController.deleteAnAnimal);
 server.put('/updateKeywords/:id', [   
     check('keyWords.*').isString().escape().trim(),
