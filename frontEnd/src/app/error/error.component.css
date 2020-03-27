@@ -51,3 +51,7 @@
 	position:relative;
 	top:1px;
 }
+
+.logo-error{
+    max-width: 200px;
+}

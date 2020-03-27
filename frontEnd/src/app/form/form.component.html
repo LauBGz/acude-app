@@ -24,7 +24,7 @@
                                 [(ngModel)]="formData['keyWords']">
                             <div class="input-group-append">
                                 <button (click)="addKeywordForm()" class="btn btn-warning"
-                                    type="button">+</button>
+                                    type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
                             </div>
                         </div>
                         <div class="info-keywords">
@@ -77,19 +77,7 @@
                         <label for="animalCategory">Categoría</label>
                         <select class="form-control" type="select" required name="animalCategory"
                             #animalHabitat="ngModel" [(ngModel)]="formData['category']">
-                            <option>ANFIBIOS</option>
-                            <option>ANÉLIDOS</option>
-                            <option>ARTRÓPODOS</option>
-                            <option>AVES</option>
-                            <option>CNIDARIOS</option>
-                            <option>EQUINODERMOS</option>
-                            <option>MAMÍFEROS</option>
-                            <option>MOLUSCOS</option>
-                            <option>NEMÁTODOS</option>
-                            <option>PECES</option>
-                            <option>PLATELMINTOS</option>
-                            <option>PORÍFEROS</option>
-                            <option>REPTILES</option>
+                            <option *ngFor="let category of _animalService.categories; let i = index">{{category}}</option>
                         </select>
                     </div>
                     <!--Conservation status-->

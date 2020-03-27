@@ -14,22 +14,6 @@ export class MainComponent implements OnInit {
     
     }
 
-    categories: string [] = [
-    'ANFIBIOS',
-    'ANÉLIDOS',
-    'ARTRÓPODOS',
-    'AVES',
-    'CNIDARIOS',
-    'EQUINODERMOS',
-    'MAMÍFEROS',
-    'MOLUSCOS',
-    'NEMÁTODOS',
-    'PECES',
-    'PLATELMINTOS',
-    'PORÍFEROS',
-    'REPTILES',
-    ]
-
     textSearch: string ="";
     searchBody: object = {}
     id: number;

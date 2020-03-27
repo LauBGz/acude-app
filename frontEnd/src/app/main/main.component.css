@@ -125,7 +125,6 @@
 }
 
 .col-md-1{
-    border: 1px solid red;
     padding: 0px;
     margin: 0px;
 }
@@ -138,24 +137,26 @@
 .btn-link {
     color: purple;
 }
-/* 
+
 @media (min-width: 720px)
 {
     .collapse
     {
         display: block;
     }
-} */
+}
 
 .list-group-item{
     background-color: rgb(255, 239, 255);
 }
 
 .btn-secondary{
-    padding-left: 0px;
+    padding-left: 2px;
+    background-color: rgb(70, 67, 67);
+    border: none;
 }
 
-.btn-warning{
+.pag{
     margin-right: 10px;
     font-weight: bold;
 }

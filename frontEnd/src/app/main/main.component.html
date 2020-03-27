@@ -37,18 +37,18 @@
                 <div class="card">
                     <div class="card-header" id="headingOne">
                     <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <button class="btn btn-link visible-xs" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             <i class="fa fa-angle-double-down"></i> Filtrar por categoría
                         </button>
                     </h5>
                     </div>
-                    <div id="collapseOne" class="collapse show"  aria-labelledby="headingOne" data-parent="#accordion">
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                         <ul class="list-group">
-                            <li class="list-group-item" *ngFor="let category of categories; let i = index">
+                            <li class="list-group-item" *ngFor="let category of _animalService.categories; let i = index">
                                 <div class="d-flex bd-highlight">
-                                    <div class="bd-highlight">{{categories[i]}}</div>
+                                    <div class="bd-highlight">{{_animalService.categories[i]}}</div>
                                     <div class="ml-auto bd-highlight">
-                                        <input value="{{categories[i]}}" type="checkbox" (change)="onCheckboxChange(categories[i],$event)">
+                                        <input value="{{_animalService.categories[i]}}" type="checkbox" (change)="onCheckboxChange(_animalService.categories[i],$event)">
                                     </div>
                                 </div>
                             </li>
@@ -79,13 +79,10 @@
                     </div>
                 </div>
             </div>
-            <nav aria-label="Page navigation example">
+            <nav *ngIf="_animalService.allAnimals.length > 9" aria-label="Page navigation example">
                 <ul class="pagination">
-                  <li class="page-item"><button class="btn btn-warning" [disabled]="inferior === 0" (click)="previous()">Previous</button></li>
-                    <!-- <ul *ngFor="let page of _animalService.arrayPages" class="pagination">
-                        <li class="page-item"><button>{{page}}</button></li>
-                    </ul> -->
-                  <li class="page-item"><button class="btn btn-warning" [disabled]="superior > _animalService.allAnimals.length || superior === _animalService.allAnimals.length" (click)="next()">Next</button></li>
+                  <li class="page-item"><button class="btn btn-warning pag" [disabled]="inferior === 0" (click)="previous()">Previous</button></li>
+                  <li class="page-item"><button class="btn btn-warning pag" [disabled]="superior > _animalService.allAnimals.length || superior === _animalService.allAnimals.length" (click)="next()">Next</button></li>
                 </ul>
             </nav>
         </div>

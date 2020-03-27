@@ -2,11 +2,11 @@
     background-color: white;
     padding-top: 0px;
     padding-bottom: 0px;
-    border-bottom: 3px solid #AF72AF;
+    border-bottom: 3px solid #670a78;
 }
 
 .logo_navbar {
-    width: 50px;
+    height: 50px;
 }
 
 .btn {
@@ -17,10 +17,10 @@
 }
 
 h1 {
-    margin-top: 5px;
+    margin-top: 10px;
     font-size: 30px;
     font-weight: bold;
-    color: #9d669d;
+    color: #670a78;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 

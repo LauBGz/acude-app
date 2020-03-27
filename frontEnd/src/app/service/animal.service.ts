@@ -13,6 +13,22 @@ export class AnimalService {
         this.loadAllAnimals();
     }
 
+    categories: string [] = [
+        'ANFIBIOS',
+        'ANÉLIDOS',
+        'ARTRÓPODOS',
+        'AVES',
+        'CNIDARIOS',
+        'EQUINODERMOS',
+        'MAMÍFEROS',
+        'MOLUSCOS',
+        'NEMÁTODOS',
+        'PECES',
+        'PLATELMINTOS',
+        'PORÍFEROS',
+        'REPTILES',
+        ]
+        
     animals: any;
     anAnimal: Object; 
     allAnimals: Object [] = [];
