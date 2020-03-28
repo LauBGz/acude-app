@@ -30,7 +30,8 @@ exports.addAnimal = (req, res) => {
         ]);
 
         const rq = req.body;
-      
+        
+        //Check if the animal already
         animal.find({ name: rq.name },
             (error, result) => {
                 if (error) throw error;
@@ -53,7 +54,7 @@ exports.addAnimal = (req, res) => {
                     const newAnimal = new animal(data);
                     newAnimal.save((error) =>{
                         if(error) throw error;
-                        res.send({"Message": "Animal guardado.",
+                        res.send({"Message": "Datos del animal guardados con éxito.",
                         "_id": data._id
                         });
                     })  

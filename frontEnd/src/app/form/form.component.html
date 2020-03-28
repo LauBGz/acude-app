@@ -99,17 +99,20 @@
             <div [hidden]="!submitted" class="wrap-form">
                 <div class="alert alert-info" role="alert">
                     <p>{{_animalService.messageForm}}<p>
+                    <p *ngIf="_animalService.alreadyRegistered">Si deseas hacer alguna modificación o sugerencia por favor contáctanos en <span class="email">info@acude-app.com</span>.</p>
                 </div>
-                <div class="title-addImage">
-                    <p>¿Tienes una imagen donde se vea bien el animal? ¡Súbela!</p>
-                </div>
-                <form ngNoForm action="http://localhost:3000/uploadImage/{{_animalService.idAnimal}}" method="POST"
-                enctype="multipart/form-data">
-                    <div class="form-group">
-                      <input name="animalImage" type="file" class="form-control-file">
-                      <button type="submit">Enviar</button>
+                <div *ngIf="!_animalService.alreadyRegistered" class="upload-image">
+                   <div class="title-addImage">
+                        <p>¿Tienes una imagen donde se vea bien el animal? ¡Súbela!</p>
                     </div>
-                </form>
+                    <form ngNoForm action="http://localhost:3000/uploadImage/{{_animalService.idAnimal}}" method="POST"
+                    enctype="multipart/form-data">
+                        <div class="form-group">
+                        <input name="animalImage" type="file" class="form-control-file">
+                        <button type="submit">Enviar</button>
+                        </div>
+                    </form> 
+                </div>
             </div>
         </div>
     </div>

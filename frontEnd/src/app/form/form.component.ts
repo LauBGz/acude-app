@@ -20,10 +20,8 @@ export class FormComponent implements OnInit {
 
     
     checkName(){
-        console.log(this.formData['name'])
         this.searchBody = {"name": this.formData['name']};
         this._animalService.checkAnimalName(this.searchBody);
-        
     }
 
     addKeywordForm(){

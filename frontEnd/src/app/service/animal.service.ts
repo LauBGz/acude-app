@@ -37,8 +37,8 @@ export class AnimalService {
     filteredAnimals: Object [] = [];
     showCheck: boolean;
     registeredAnimal: string;
-    arrayPages: number [] = [];
-    limit: number = 9;
+    alreadyRegistered: boolean = false;
+  
 
     loadAllAnimals() {
         this._http.get(this.baseUrl+"getAllAnimals")
@@ -86,7 +86,11 @@ export class AnimalService {
         this._http.post(this.baseUrl+"addAnimal", data)
         .subscribe((responseAPI) => {
             this.messageForm = responseAPI["Message"];
-            this.idAnimal = responseAPI["_id"];
+            this.idAnimal = responseAPI["_id"];       
+            //If animal doesn't exist change variable to show different message
+            if(this.idAnimal === undefined){
+                this.alreadyRegistered = true;
+            }
         })  
     }
 
