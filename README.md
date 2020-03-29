@@ -1,4 +1,4 @@
-(https://res.cloudinary.com/duiyyjgey/image/upload/v1585495456/animals/1585495454993.png)
+<img src="https://res.cloudinary.com/duiyyjgey/image/upload/v1585495456/animals/1585495454993.png" style="height:100px;">
 
 # Project Name
 > ACUDE WEB APP
@@ -18,22 +18,17 @@ Galicia has great natural resources and nature lovers usually find various anima
 ![Example main view](https://res.cloudinary.com/duiyyjgey/image/upload/v1585500227/animals/main_eagxm8.png)
 
 ## Technologies
-* Tech 1 - version 1.0
-* Tech 2 - version 2.0
-* Tech 3 - version 3.0
+* Database - MongoDB
+* Back end - NodeJS & Express 
+* Front end - Angular 9
 
 ## Features
-List of features ready and TODOs for future development
-* Awesome feature 1
-* Awesome feature 2
-* Awesome feature 3
-
-To-do list:
-* Wow improvement to be done 1
-* Wow improvement to be done 2
+* Identify an animal by keywords
+* Provide useful information to help animals in need
+* Locate the nearest help centers
 
 ## Author
-Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
+Created by [@LauBGz](https://www.linkedin.com/in/lauraglezbarreiro) - feel free to contact me!
 
 ## Legal notices
 
