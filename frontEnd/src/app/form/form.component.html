@@ -7,7 +7,7 @@
                     (ngSubmit)="addAnimal.form.valid && submitData(addAnimal)">
                     <!--Nombre-->
                     <div class="form-group">
-                        <label for="animalName">Nombre</label>
+                        <label for="animalName"><strong>Nombre</strong></label>
                         <input class="form-control" type="text" placeholder="¿Cuál es su nombre oficial?" required
                             maxlength="40" name="animalName" #animalName="ngModel" [(ngModel)]="formData['name']"  (change)="checkName()">
                     </div>
@@ -17,7 +17,7 @@
                         class="alert alert-info">{{_animalService.registeredAnimal}}</p>
                     <!--Palabras clave-->
                     <div class="form-group">
-                        <label for="animalKeywords">Palabras clave</label>
+                        <label for="animalKeywords"><strong>Palabras clave</strong></label>
                         <div class="input-group mb-3">
                             <input (keypress)="onKeyPress($event)" class="form-control" type="text" placeholder="¿Qué palabra lo define?"
                                 name="animalKeywords" #animalKeywords="ngModel"
@@ -38,7 +38,7 @@
                     </div>
                     <!--Dieta-->
                     <div class="form-group">
-                        <label for="animalDiet">Dieta</label>
+                        <label for="animalDiet"><strong>Dieta</strong></label>
                         <textarea class="form-control" type="text" placeholder="¿De qué se alimenta?" rows="3"
                             maxlength="150" required name="animalDiet" #animalDiet="ngModel"
                             [(ngModel)]="formData['diet']"></textarea>
@@ -47,7 +47,7 @@
                         class="alert alert-danger">Este campo es obligatorio</p>
                     <!--Reproduction-->
                     <div class="form-group">
-                        <label for="animalReproduction">Reproducción</label>
+                        <label for="animalReproduction"><strong>Reproducción</strong></label>
                         <textarea class="form-control" type="text" placeholder="¿Cuándo se reproduce?" required rows="3"
                             maxlength="150" name="animalReproduction" #animalReproduction="ngModel"
                             [(ngModel)]="formData['reproduction']"></textarea>
@@ -56,7 +56,7 @@
                         class="alert alert-danger">Este campo es obligatorio</p>
                     <!--Habits-->
                     <div class="form-group">
-                        <label for="animalHabit">Costumbres</label>
+                        <label for="animalHabit"><strong>Costumbres</strong></label>
                         <textarea class="form-control" type="text" placeholder="¿Es nocturno? ¿Hiberna?" required
                             rows="3" maxlength="150" name="animalHabit" #animalHabit="ngModel"
                             [(ngModel)]="formData['habit']"> </textarea>
@@ -65,7 +65,7 @@
                         class="alert alert-danger">Este campo es obligatorio</p>
                     <!--Habitat-->
                     <div class="form-group">
-                        <label for="animalHabitat">Habitat</label>
+                        <label for="animalHabitat"><strong>Habitat</strong></label>
                         <textarea class="form-control" type="text" placeholder="¿Dónde vive?" required rows="3"
                             maxlength="150" name="animalHabitat" #animalHabitat="ngModel"
                             [(ngModel)]="formData['habitat']"></textarea>
@@ -74,7 +74,7 @@
                         class="alert alert-danger">Este campo es obligatorio</p>
                     <!--Categories-->
                     <div class="form-group">
-                        <label for="animalCategory">Categoría</label>
+                        <label for="animalCategory"><strong>Categoría</strong></label>
                         <select class="form-control" type="select" required name="animalCategory"
                             #animalHabitat="ngModel" [(ngModel)]="formData['category']">
                             <option *ngFor="let category of _animalService.categories; let i = index">{{category}}</option>
@@ -82,7 +82,7 @@
                     </div>
                     <!--Conservation status-->
                     <div class="form-group">
-                        <label for="conservationStatus">Estado de conservación</label>
+                        <label for="conservationStatus"><strong>Estado de conservación</strong></label>
                         <select class="form-control" type="select" required name="conservationStatus"
                             #animalHabitat="ngModel" [(ngModel)]="formData['conservationStatus']">
                             <option>Vulnerable</option>
