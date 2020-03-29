@@ -28,10 +28,9 @@
 * **Sample Call:**
 
 ```Javascript
-    server.get('/getAllAnimals', animalController.getAllAnimals);
+    server.get('/getAllAnimals');
 ```
 
-//
 
 **Get an animal**
 ----
@@ -62,10 +61,9 @@
 * **Sample Call:**
 
 ```Javascript
-    server.get('/getAnAnimal/:id', animalController.getAnAnimal);
+    server.get('/getAnAnimal/:id');
 ```
 
-//
 
 **Delete an animal**
 ----
@@ -100,10 +98,9 @@
 * **Sample Call:**
 
 ```Javascript
-    server.delete('/deleteAnAnimal/:id',animalController.deleteAnAnimal);
+    server.delete('/deleteAnAnimal/:id');
 ```
 
-//
 
 **Add an animal**
 ----
@@ -150,7 +147,6 @@
 
   * **Code:** 422 <br />
     **Content:** 
-    > Example
      ```json
     {
     "Message": "El animal ya existe en la base de datos."
@@ -160,10 +156,9 @@
 * **Sample Call:**
 
 ```Javascript
-    server.post('/addAnimal', animalController.addAnimal);
+    server.post('/addAnimal');
 ```
 
-//
 
 **Upload an image**
 ----
@@ -198,10 +193,9 @@
 * **Sample Call:**
 
 ```Javascript
-    server.post('/uploadImage/:id', uploadController.uploadImage);
+    server.post('/uploadImage/:id');
 ```
 
-//
 
 **Check name**
 ----
@@ -241,7 +235,6 @@
 
   * **Code:** 422 <br />
     **Content:** 
-    > Example
      ```json
     {
     "Error": "El animal ya existe en la base de datos."
@@ -251,10 +244,9 @@
 * **Sample Call:**
 
 ```Javascript
-    server.post('/checkName', animalController.checkName);
+    server.post('/checkName');
 ```
 
-//
 
 **Filter by keywords**
 ----
@@ -300,10 +292,8 @@
 * **Sample Call:**
 
 ```Javascript
-    server.post('/filterByKeywords', animalController.filterByKeywords);
+    server.post('/filterByKeywords');
 ```
-
-//
 
 **Update keywords**
 ----
@@ -333,7 +323,6 @@
 
   * **Code:** 200 <br />
     **Content:** 
-      > Example
      ```json
     {
     "message": "Palabras clave actualizadas."
@@ -354,7 +343,7 @@
 * **Sample Call:**
 
 ```Javascript
-    server.put('/updateKeywords/:id', animalController.updateKeywords);
+    server.put('/updateKeywords/:id');
 ```
 
 
