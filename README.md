@@ -1,4 +1,4 @@
-<img src="https://res.cloudinary.com/duiyyjgey/image/upload/v1585495456/animals/1585495454993.png" style="height:100px;">
+<img src="https://res.cloudinary.com/duiyyjgey/image/upload/c_scale,h_100/v1585495456/animals/1585495454993.png">
 
 # Project Name
 > ACUDE WEB APP
