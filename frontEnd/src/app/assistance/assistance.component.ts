@@ -18,24 +18,23 @@ export class AssistanceComponent implements OnInit {
     closestCenter: Object;
 
     geolocalizar(){
-
+    //If browser supports, get current position
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.getUserPosition);
         } else { 
             alert("Geolocation is not supported by this browser.");
         }
-   
     }
-
+    
     getUserPosition = (position) => {
-        let userLat = 42.596250;
-        let userLon = -7.180810;
+        let userLat = position.coords.latitude;
+        let userLon = position.coords.longitude;
            
         let minDif = 99999;
         let closest;
         let index;
-        let showAddress = false;
-           
+        
+        //Use Pythagoras theorem to get the closest center to user position
         for (index = 0; index < this.asistanceCenters.length; index++ ) {
             let dif = PythagorasEquirectangular(userLat, userLon, this.asistanceCenters[index]["lat"], this.asistanceCenters[index]["lon"]);
             if (dif < minDif) {
@@ -45,8 +44,6 @@ export class AssistanceComponent implements OnInit {
         }
 
         this.closestCenter = this.asistanceCenters[closest];
-
-        console.log(this.closestCenter) 
 
         function Deg2Rad(deg) {
             return deg * Math.PI / 180;

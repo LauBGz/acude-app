@@ -11,7 +11,8 @@ const cloudConfig = JSON.parse(cloudConfigInfo);
 
 //Upload picture
 exports.uploadImage = (req, res) => {
-   const id = req.params.id;
+    //Parameter of the animal associated to the image
+    const id = req.params.id;
     
     {
         const storageConfig = multer.diskStorage(
@@ -24,7 +25,7 @@ exports.uploadImage = (req, res) => {
     
         uploadImage(req, res, (error) => {
             if(error) throw error;
-    
+            //Upload image to Cloudinary
             cloudinary.config({
                 "cloud_name": cloudConfig["name"],
                 "api_key": cloudConfig["key"],

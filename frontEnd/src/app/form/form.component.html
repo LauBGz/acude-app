@@ -90,10 +90,8 @@
                             <option>Preocupación menor</option>
                         </select>
                     </div>
-
                     <input type="reset" class="btn btn-secondary mr-2" value="Restablecer">
-                    <input type="submit" class="btn btn-success" value="Enviar" [disabled]="!addAnimal.form.valid" />
-
+                    <input type="submit" class="btn btn-success" value="Enviar" [disabled]="!addAnimal.form.valid || this.keywordsArray.length === 0" />
                 </form>
             </div>
             <div [hidden]="!submitted" class="wrap-form">

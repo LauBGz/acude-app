@@ -44,16 +44,14 @@ export class AnimalService {
         this._http.get(this.baseUrl+"getAllAnimals")
         .subscribe((responseAPI) => { 
             this.animals = responseAPI;
-            //For all the results filter only the ones ready to be published
-            for (let i = 0; i < this.animals.length; i++) {
-                if(this.animals[i]["animalFileStatus"] !== "Pending"){
-                    this.allAnimals.push(this.animals[i]);
+            //For all the results, filter only the ones ready to be published
+            this.animals.forEach(element => {
+                if(element["animalFileStatus"] !== "Pending"){
+                    this.allAnimals.push(element);
                 }
-            }
-            //Update keywords option is not available until the search is done
-            this.showCheck = false;   
-            
-          
+            });
+            //Update keywords option for users is not available until the search is done
+            this.showCheck = false;     
         });
     }
 
@@ -77,7 +75,7 @@ export class AnimalService {
             //Update keywords option is now available   
             this.showCheck = true;
             this.allAnimals = this.filteredAnimals;
-      
+            //Clear array for next search
             this.filteredAnimals = [];
         });
     }
@@ -97,21 +95,21 @@ export class AnimalService {
     uploadImage(data){
         this._http.post(this.baseUrl+"uploadImage/"+this.idAnimal, data)
         .subscribe((responseAPI) => {
-            console.log(responseAPI) 
+            console.log(responseAPI) //TODO remove
         })  
     }
 
     updateKeywords(keywords, id){
         this._http.put(this.baseUrl+"updateKeywords/"+id, keywords)
         .subscribe((responseAPI) => {
-            console.log(responseAPI) 
+            console.log(responseAPI) //TODO remove
         })  
     }
 
     checkAnimalName(data){   
         this._http.post(this.baseUrl+"checkName", data)
         .subscribe((responseAPI) => {
-            
+            //Check the name of the animal first at form and give feedback
             if(responseAPI["Error"]){
                 this.registeredAnimal = responseAPI["Error"];
             } else {
@@ -119,14 +117,5 @@ export class AnimalService {
             }
         })  
     }
-
-    // calculatePages(){
-    //     this.arrayPages = [];
-    //     let pages = Math.ceil(this.allAnimals.length/this.limit);
-            
-    //     for (let i = 1; i < pages+1; i++) {
-    //         this.arrayPages.push(i)
-    //     }
-    // }
 }
 

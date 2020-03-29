@@ -12,7 +12,6 @@ const server = express();
 
 //Middlewares
 server.use(cors());
-server.use(express.static('web'))
 server.use(bodyParser.json());
 server.use(helmet())
 
@@ -31,7 +30,6 @@ server.post('/addAnimal', [
 animalController.addAnimal);
 server.get('/getAnAnimal/:id', animalController.getAnAnimal);
 server.get('/getAllAnimals', animalController.getAllAnimals);
-server.get('/getAllCategories', animalController.getAllCategories);
 server.delete('/deleteAnAnimal/:id',animalController.deleteAnAnimal);
 server.put('/updateKeywords/:id', [   
     check('keyWords.*').isString().escape().trim(),
@@ -41,7 +39,9 @@ server.post('/uploadImage/:id', uploadController.uploadImage);
 server.post('/filterByKeywords', [   
     check('keyWords.*').isString().escape().trim(),
 ], animalController.filterByKeywords);
-server.post('/checkName', [check('name').isString().escape().trim()], animalController.checkName);
+server.post('/checkName', [
+    check('name').isString().escape().trim()
+], animalController.checkName);
 
 //Listen server
 server.listen(3000, () => {

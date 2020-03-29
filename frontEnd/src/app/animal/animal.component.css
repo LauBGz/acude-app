@@ -1,9 +1,11 @@
-
+.container{
+    height: 80vh;
+}
 .col-12{    
-    background-color: rgb(240, 239, 239);
+    background-color: rgb(245, 231, 245);
     margin-top: 20px;
     margin-bottom: 20px;
-    height: 75vh;
+ 
     overflow: hidden;
 }
 

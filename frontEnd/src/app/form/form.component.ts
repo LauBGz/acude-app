@@ -50,6 +50,4 @@ export class FormComponent implements OnInit {
     submitImage(form){
         this._animalService.uploadImage(this.formData);
     }
-    
-
 }

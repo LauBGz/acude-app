@@ -31,7 +31,7 @@ exports.addAnimal = (req, res) => {
 
         const rq = req.body;
         
-        //Check if the animal already
+        //Check if the animal already exists
         animal.find({ name: rq.name },
             (error, result) => {
                 if (error) throw error;
@@ -113,7 +113,6 @@ exports.updateKeywords = (req, res) => {
 
         animal.findById(id, (error, result) => {
             if (error) throw error;
-            
             //Only add keywords different from existing
             let newKeywords = [];
             for (let i = 0; i < userSearch.length; i++) {
@@ -152,45 +151,115 @@ exports.filterByKeywords = (req, res) => {
         const rq = req.body;
 
         let userSearch = [];
+        let ocurrences = 0;
+        let orderedResults = [];
+        let registeredAnimal;
 
         //Utility to normalize user's keywords -to lower case, no accent mark-
         arrayUtils.normalizeArray(rq.keyWords, userSearch);
-     
-        //Search for all animals with any of the keywords
-        animal.find({ keyWords: { "$in" : userSearch } },
-        
-            (error, result) => {
-                if (error) throw error;
 
-                let orderedResults = [];
+        //Levenshtein distance algorithm
+        LevenshteinDistance =  function(a, b){
+            if(a.length == 0) return b.length; 
+            if(b.length == 0) return a.length; 
+    
+            var matrix = [];
+    
+            // increment along the first column of each row
+            var i;
+            for(i = 0; i <= b.length; i++){
+                matrix[i] = [i];
+            }
+    
+            // increment each column in the first row
+            var j;
+            for(j = 0; j <= a.length; j++){
+                matrix[0][j] = j;
+            }
+    
+            // Fill in the rest of the matrix
+            for(i = 1; i <= b.length; i++){
+                for(j = 1; j <= a.length; j++){
+                if(b.charAt(i-1) == a.charAt(j-1)){
+                    matrix[i][j] = matrix[i-1][j-1];
+                } else {
+                    matrix[i][j] = Math.min(matrix[i-1][j-1] + 1, // substitution
+                                            Math.min(matrix[i][j-1] + 1, // insertion
+                                                    matrix[i-1][j] + 1)); // deletion
+                }
+                }
+            }
+    
+                return matrix[b.length][a.length];
+            };
 
-                //For all the results
-                for (let i = 0; i < result.length; i++){
-                    let ocurrences = 0;
-                    const allAnimalKeywords = result[i]["keyWords"];
-
-                    //Check all animal keywords
-                    for (let j = 0; j < userSearch.length; j++) {
-
-                        //If animal keywords includes any of the user search words
-                        //ocurrences increase and the new ordered results array is updated
-                        //with the matching degree number and the animal.
-                        if(allAnimalKeywords.includes(userSearch[j])){
-                            ocurrences++;  
-                        }
+            //Function to apply Levenshtein algorithm to arrays (sum of total ocurrences)
+            function getLevenshteinDistance (array1, array2){
+                for (let i = 0; i < array1.length; i++) {
+                    for (let j = 0; j < array2.length; j++) {
+                        ocurrences += LevenshteinDistance(array1[i], array2[j])
                     }
+                }
+                return ocurrences;
+            }
+
+            //Function to check if an animal is already included in the array
+            function checkIfRegistered(name){
+                registeredAnimal = false;
+                for(let j = 0; j < orderedResults.length; j++){
+                    if(orderedResults[j]["array"]["name"] === name){
+                        registeredAnimal = true;
+                    }
+                }
+                return registeredAnimal;
+            }
+            
+     
+        //1. Search first for animals which have all the user's keywords included
+        animal.find({ keyWords: { "$all" : userSearch } },
+            (error, result) => {
+                if (error) throw error;   
+                //For all results with all user's keywords in them
+                for (let i = 0; i < result.length; i++){
+                    //Storage keywords in a variable
+                    const allAnimalKeywords = result[i]["keyWords"];
+                    //Assign a total value according to the Levenshtein distance algorithm
+                    ocurrences = (getLevenshteinDistance(allAnimalKeywords, userSearch));
+                    //Add to an array the results with the number of ocurrences associated
                     let match = ocurrences/allAnimalKeywords.length*100;
                     orderedResults.push({"match": match, "array": result[i]}); 
                 }
-                //Sort the array ordered results by matching degree number
-                orderedResults.sort((a, b) => (a.match < b.match) ? 1 : -1)
-                res.send({orderedResults});          
             }
-        );  
-    }
-}
+        )
+        
+        //2. Search then for animals which have any of the user's keywords included
+        animal.find({ keyWords: { "$in" : userSearch } },
+            (error, result) => {
+                if (error) throw error;   
+                //For all results with any user's keywords in them                     
+                for (let i = 0; i < result.length; i++){
+                    //Storage keywords in a variable
+                    const allAnimalKeywords = result[i]["keyWords"];
+                    //Check if the animals in the results are already included
+                    checkIfRegistered(result[i]["name"]);
+                    //Only for those not included
+                    if(!registeredAnimal){
+                        //Assign a total value according to the Levenshtein distance algorithm
+                        ocurrences = (getLevenshteinDistance(allAnimalKeywords, userSearch));
+                        //Add to an array the results with the number of ocurrences associated
+                        let match = ocurrences/allAnimalKeywords.length*100;
+                        orderedResults.push({"match": match, "array": result[i]});
+                    } 
+                };
+            //Order the definite array from lower to larger Levenshtein distance
+            orderedResults.sort((a, b) => (a.match > b.match) ? 1 : -1)
+            //Send the results    
+            res.send({orderedResults});     
+        }
+    )}
+}; 
 
-//Filter by category
+//Check if an animal exists in the database
 exports.checkName = (req, res) => {
     //Inputs validation
     const errors = validationResult(req) 
@@ -212,13 +281,3 @@ exports.checkName = (req, res) => {
         );
     }
 };
-
-
-//Get all animals
-exports.getAllCategories = (req, res) => {
-    animal.find({category: "enum" }, (error, result) => {
-        if (error) throw error;
-        res.send(result)
-    })
-};
-
