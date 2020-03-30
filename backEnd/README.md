@@ -1,3 +1,13 @@
+## Endpoints
+* [Get all animals](#Get-all-animals)
+* [Get an animal](#Get-an-animal)
+* [Delete an animal](#Delete-an-animal)
+* [Add an animal](#Add-an-animal)
+* [Upload an image](#Upload-an-image)
+* [Check name](#Check-name)
+* [Filter by keywords](#Filter-by-keywords)
+* [Update keywords](#Update-keywords)
+
 **Get all animals**
 ----
  `Obtain all animals from the database.`

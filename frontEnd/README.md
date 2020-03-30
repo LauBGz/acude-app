@@ -2,26 +2,27 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.1.
 
-## Development server
+## Table of contents
+* [Components](#Components)
+* [Services](#Services)
+* [Modules](#Modules)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Components
+* **MainComponent**: main view of the web app. It includes the search form, the results of the search and a filter by categories.
+* **NavbarComponent**: shared navbar for all components. It includes the link to add animal and get assitance.
+* **FooterComponent**: shared footer for all components. It includes links to social networks.
+* **AnimalComponent**: view of each animal. It includes a modal image and different color clasification for the animal conservation status.
+* **FormComponent**: view with a form to create a new animal. First the user must fill in the data about the animal. After that they can upload an image.
+* **AssistanceComponent**: view for supporting an animal in danger. It includes information about how to proceed in the most common situations and where to find the nearest rescue center basing on the user's geolocation.
+* **SuccessComponent**: view showed after a form was successfully submitted.
+* **ErrorComponent**: view for non existing paths or general errors.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Services
+* **AnimalService**: contains all references to backend in order to get or send the data from/to the database.
+* **CentersService**: contains the information about the rescue centers.
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Modules
+* **RouterModule**: used to specify application states, manage state transitions while taking care of the URL, and load bundles on demand.
+* **HttpClientModule**: allows to perform HTTP requests and easily manipulate those requests and their responses.
+* **FormsModule**: Exports the required providers and directives for template-driven forms. 

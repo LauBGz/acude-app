@@ -27,6 +27,9 @@ Galicia has great natural resources and nature lovers usually find various anima
 * Provide useful information to help animals in need
 * Locate the nearest help centers
 
+## Highlights
+Web app responsive - By its very nature, this web application was designed to be used especially on mobile devices.
+
 ## Author
 Created by [@LauBGz](https://www.linkedin.com/in/lauraglezbarreiro) - feel free to contact me!
 

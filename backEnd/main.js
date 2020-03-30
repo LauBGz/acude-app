@@ -13,7 +13,8 @@ const server = express();
 //Middlewares
 server.use(cors());
 server.use(bodyParser.json());
-server.use(helmet())
+server.use(helmet());
+server.use(express.static("web"));
 
 //Endpoints
 server.post('/addAnimal', [   
