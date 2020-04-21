@@ -12,7 +12,7 @@
 * [Legal notice](#legalnotice)
 
 ## General info
-Galicia has great natural resources and nature lovers usually find various animal species during their journeys. For an amateur, it is not always easy to identify the type of animal. In addition, sometimes it is likely to find an animal at risk or in need odf assistance. The web application aims to provide support in both cases: for the identification of the species and for assistance if necessary.
+Galicia has great natural resources and nature lovers usually find various animal species during their journeys. For an amateur, it is not always easy to identify the type of animal. In addition, sometimes it is likely to find an animal at risk or in need of assistance. The web application aims to provide support in both cases: for the identification of the species and for assistance if necessary.
 
 ## Screenshots
 ![Example main view](https://res.cloudinary.com/duiyyjgey/image/upload/v1585500227/animals/main_eagxm8.png)
