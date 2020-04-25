@@ -1,12 +1,19 @@
 //Imports
+const fs = require('fs');
+const path = require('path');   
 const animal = require('../models/animal.model');
 const mongoose = require('mongoose');
 const { check, validationResult } = require('express-validator');
 const bodyController = require('./body.controller');
 const arrayUtils = require('../utils/array.util');
 
+//Read mongo connection config info
+const absoluteRoute = path.join(__dirname.replace('controllers', ''),'/config/lockupAnimal.json');
+const mongoLoginConfig = fs.readFileSync(absoluteRoute);
+const mongoLogin = JSON.parse(mongoLoginConfig);
+
 //Create connection
-mongoose.connect("mongodb://localhost:27017/animal", {
+mongoose.connect(mongoLogin["mongo_login"], {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -207,7 +214,7 @@ exports.filterByKeywords = (req, res) => {
             function checkIfRegistered(name){
                 registeredAnimal = false;
                 for(let j = 0; j < orderedResults.length; j++){
-                    if(orderedResults[j]["array"]["name"] === name){
+                    if(orderedResults[j]["animal"]["name"] === name){
                         registeredAnimal = true;
                     }
                 }
@@ -227,7 +234,7 @@ exports.filterByKeywords = (req, res) => {
                     ocurrences = (getLevenshteinDistance(allAnimalKeywords, userSearch));
                     //Add to an array the results with the number of ocurrences associated
                     let match = ocurrences/allAnimalKeywords.length*100;
-                    orderedResults.push({"match": match, "array": result[i]}); 
+                    orderedResults.push({"match": match, "animal": result[i]}); 
                 }
             }
         )
@@ -248,7 +255,7 @@ exports.filterByKeywords = (req, res) => {
                         ocurrences = (getLevenshteinDistance(allAnimalKeywords, userSearch));
                         //Add to an array the results with the number of ocurrences associated
                         let match = ocurrences/allAnimalKeywords.length*100;
-                        orderedResults.push({"match": match, "array": result[i]});
+                        orderedResults.push({"match": match, "animal": result[i]});
                     } 
                 };
             //Order the definite array from lower to larger Levenshtein distance

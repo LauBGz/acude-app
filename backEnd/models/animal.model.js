@@ -11,7 +11,6 @@ const animalSchema = new mongoose.Schema({
     "name": {   
         require: true,
         type: types.String
-   
     },
     "keyWords": {   
         require: true,

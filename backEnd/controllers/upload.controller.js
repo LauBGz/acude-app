@@ -5,7 +5,7 @@ const path = require('path');
 const animal = require('../models/animal.model');
 
 //Read cloudinary config info
-const absoluteRoute = path.join(__dirname.replace('controllers', ''),'/config/lockup.json');
+const absoluteRoute = path.join(__dirname.replace('controllers', ''),'/config/lockupAnimal.json');
 const cloudConfigInfo = fs.readFileSync(absoluteRoute);
 const cloudConfig = JSON.parse(cloudConfigInfo); 
 
