@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "backEnd"
+		},
+		{
+			"path": "..\\GIT\\trekkingApp-withAuth"
+		},
+		{
+			"path": "..\\GIT\\fullstack-bootcamp\\Contents\\02-Back-end\\04-MongoDB\\nocoffee"
+		},
+		{
+			"path": "..\\GIT\\fullstack-bootcamp\\Contents\\02-Back-end\\04-MongoDB\\libros"
+		}
+	],
+    "settings": {}
+}

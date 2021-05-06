@@ -68,8 +68,8 @@ export class AnimalService {
             this.animals = responseAPI["orderedResults"];
             //For all the results filtered show only the ones ready to be published
             for (let i = 0; i < this.animals.length; i++) {
-                if(this.animals[i]["array"]["animalFileStatus"] !== "Pending"){
-                    this.filteredAnimals.push(this.animals[i]["array"]);
+                if(this.animals[i]["animal"]["animalFileStatus"] !== "Pending"){
+                    this.filteredAnimals.push(this.animals[i]["animal"]);
                 }
             }
             //Update keywords option is now available   

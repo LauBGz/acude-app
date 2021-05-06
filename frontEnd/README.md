@@ -25,4 +25,4 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Modules
 * **RouterModule**: used to specify application states, manage state transitions while taking care of the URL, and load bundles on demand.
 * **HttpClientModule**: allows to perform HTTP requests and easily manipulate those requests and their responses.
-* **FormsModule**: Exports the required providers and directives for template-driven forms. 
+* **FormsModule**: exports the required providers and directives for template-driven forms. 
